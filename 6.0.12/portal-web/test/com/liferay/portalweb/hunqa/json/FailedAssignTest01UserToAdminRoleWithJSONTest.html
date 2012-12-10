@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>FailedAssignTest01UserToAdminRoleWithJSONTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">FailedAssignTest01UserToAdminRoleWithJSONTest</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/web/guest/home/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Control Panel</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Control Panel</td>
+	<td>Control Panel</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Portal Instances</td>
+	<td>Portal Instances</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//a[contains(@href, 'companyId')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//a[contains(@href, 'companyId')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeAttribute</td>
+	<td>//a[contains(@href, 'companyId')]@href</td>
+	<td>linkWithCompanyId</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>javascript{&quot; var link = storedVars['linkWithCompanyId']; var startCompanyId = link.indexOf('companyId=') + 'companyId='.length; var endCompanyId = link.indexOf('&amp;', startCompanyId); if (endCompanyId == '-1') {endCompanyId = link.length;}; companyId = link.substring(startCompanyId, endCompanyId); &quot;}</td>
+	<td>companyId</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>javascript{&quot; link = '/c/portal/json_service?serviceClassName=com.liferay.portal.service.RoleServiceUtil&amp;serviceMethodName=getRole&amp;serviceParameters=%5B%27companyId%27%2C+%27name%27%5D&amp;companyId=' + storedVars['companyId'] + '&amp;name=Administrator'; &quot;}</td>
+	<td>selecAdminRoleWithJSONLink</td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>openWindow</td>
+	<td>${selecAdminRoleWithJSONLink}</td>
+	<td>JSONResponseWindow</td>
+</tr>
+<tr>
+	<td>waitForPopUp</td>
+	<td>JSONResponseWindow</td>
+	<td>30000</td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>JSONResponseWindow</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//body/pre</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertPartialText</td>
+	<td>//body/pre</td>
+	<td>Administrators are super users who can do anything.</td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>//body/pre</td>
+	<td>adminRoleSelectWithJSON</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>javascript{&quot; var select = storedVars['adminRoleSelectWithJSON']; var startAdminRoleId = select.indexOf('\&quot;roleId\&quot;:') + '\&quot;roleId\&quot;:'.length; var endAdminRoleId = select.indexOf(',', startAdminRoleId); if (endAdminRoleId == -1) {endAdminRoleId = select.length - 1;} roleId = select.substring(startAdminRoleId, endAdminRoleId); &quot;}</td>
+	<td>adminRoleId</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>close</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/web/guest/home/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Sign Out</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Sign Out</td>
+	<td>Sign Out</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//input[@id='_58_login']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id='_58_login']</td>
+	<td>selenium01@liferay.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id='_58_password']</td>
+	<td>selenium</td>
+</tr>
+<tr>
+	<td>storeChecked</td>
+	<td>//input[@id='_58_rememberMeCheckbox']</td>
+	<td>rememberMe</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${rememberMe}</td>
+	<td>checkedRememberMe</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@id='_58_rememberMeCheckbox']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>checkedRememberMe</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Sign In']</td>
+	<td>Sign In</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/web/guest/home/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Control Panel</td>
+	<td>Control Panel</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Control Panel</td>
+	<td>Control Panel</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=My Account</td>
+	<td>My Account</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//input[@id='_2_userId']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//input[@id='_2_userId']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeValue</td>
+	<td>//input[@id='_2_userId']</td>
+	<td>testUserId</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>javascript{&quot; link = '/c/portal/json_service?serviceClassName=com.liferay.portal.service.UserServiceUtil&amp;serviceMethodName=addRoleUsers&amp;serviceParameters=%5B%27roleId%27%2C+%27userIds%27%5D&amp;roleId=' + storedVars['adminRoleId'] + '&amp;userIds=' + storedVars['testUserId']; &quot;}</td>
+	<td>assignUserToAdminRoleLink</td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>openWindow</td>
+	<td>${assignUserToAdminRoleLink}</td>
+	<td>JSONResponseWindow</td>
+</tr>
+<tr>
+	<td>waitForPopUp</td>
+	<td>JSONResponseWindow</td>
+	<td>30000</td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>JSONResponseWindow</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//body/pre</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertPartialText</td>
+	<td>//body/pre</td>
+	<td>com.liferay.portal.security.auth.PrincipalException</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>close</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPresent</td>
+	<td>link=Sign Out</td>
+	<td>signedIn</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>!${signedIn}</td>
+	<td>alreadySignedOut</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Sign Out</td>
+	<td>Sign Out</td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>alreadySignedOut</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>_58_login</td>
+	<td>email address</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>_58_login</td>
+	<td>test@liferay.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>_58_password</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>storeElementPresent</td>
+	<td>_58_rememberMeCheckbox</td>
+	<td>rememberMeCheckboxChecked</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${rememberMeCheckboxChecked}</td>
+	<td>RememberMeCheckboxChecked</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>_58_rememberMeCheckbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>RememberMeCheckboxChecked</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Sign In']</td>
+	<td>Sign In</td>
+</tr>
+</tbody></table>
+</body>
+</html>

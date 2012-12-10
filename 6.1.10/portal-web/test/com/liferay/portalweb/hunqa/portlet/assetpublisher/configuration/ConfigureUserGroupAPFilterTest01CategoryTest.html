@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>ConfigureUserGroupAPFilterTest01CategoryTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">ConfigureUserGroupAPFilterTest01CategoryTest</td></tr>
+</thead><tbody>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/web/guest/home/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Control Panel</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Control Panel</td>
+	<td>Control Panel</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=User Groups</td>
+	<td>User Groups</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//input[@id='_127_keywords']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id='_127_keywords']</td>
+	<td>Test User Group Name</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Search']</td>
+	<td>Search</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//tr[td/a[text()='Test User Group Name']]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//tr[td/a[text()='Test User Group Name']]//*/strong/a/span[contains(text(), 'Actions')]</td>
+	<td>Actions</td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//div[contains(@class, 'lfr-menu-list')]/ul/li[5]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[contains(@class, 'lfr-menu-list')]/ul/li[5]/a</td>
+	<td>Go to the Site's Public Pages (Opens New Window)</td>
+</tr>
+<tr>
+	<td>storeAttribute</td>
+	<td>//div[contains(@class, 'lfr-menu-list')]/ul/li[5]/a@href</td>
+	<td>userGroupPublicPages</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>${userGroupPublicPages}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Asset Publisher Test Page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Asset Publisher Test Page</td>
+	<td>Asset Publisher Test Page</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//span[@title='Options']/ul/li/strong/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//span[@title='Options']/ul/li/strong/a</td>
+	<td>Options</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//span[@title='Options']/ul/li/strong/a</td>
+	<td>Options</td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//div[@class='lfr-component lfr-menu-list']/ul/li[2]/a</td>
+	<td>Configuration</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@class='lfr-component lfr-menu-list']/ul/li[2]/a</td>
+	<td>Configuration</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@class='lfr-component lfr-menu-list']/ul/li[2]/a</td>
+	<td>Configuration</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//iframe[contains(@class, 'aui-dialog-iframe-node')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>//iframe[contains(@class, 'aui-dialog-iframe-node')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>//iframe[contains(@class, 'aui-dialog-iframe-node')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//select[@id='_86_hstp_selector']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//select[@id='_86_hstp_selector']</td>
+	<td>Categories</td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//div[contains(@id, 'assetCategoriesSelector')]//*/button/span[text()='Select']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//div[contains(@id, 'assetCategoriesSelector')]//*/button/span[text()='Select']</td>
+	<td>Select</td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//div/span/span/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div/span/span/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForNotValue</td>
+	<td>//div/span/span/input</td>
+	<td>Search</td>
+</tr>
+<tr>
+	<td>typeKeys</td>
+	<td>//div/span/span/input</td>
+	<td>Test 01 Category Name</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[contains(text(), 'Test 01 Category Name')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeChecked</td>
+	<td>//div[div[contains(text(), 'Test 01 Category Name')]]/div/input</td>
+	<td>subcategory1Checked</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${subcategory1Checked}</td>
+	<td>subcategory1Checked</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[div[contains(text(), 'Test 01 Category Name')]]/div[input]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>subcategory1Checked</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//div[//*/span[text()='Categories']]//*/button[@id='closethick']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Save']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td>You have successfully updated the setup.</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[contains(@id, 'assetCategoriesSelector')]/ul/li/span/span</td>
+	<td>Test 01 Category Name</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>relative=top</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//button[@id='closethick']</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

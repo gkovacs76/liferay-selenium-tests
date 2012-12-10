@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>AddSettingsMiscellaneousHuENLanguageTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">AddSettingsMiscellaneousHuENLanguageTest</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/web/guest/home/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Control Panel</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Control Panel</td>
+	<td>Control Panel</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Settings</td>
+	<td>Settings</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//a[@id='_130_displaySettingsLink']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertPartialText</td>
+	<td>//a[@id='_130_displaySettingsLink']</td>
+	<td>Display Settings</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//a[@id='_130_displaySettingsLink']</td>
+	<td>Display Settings</td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//input[contains(@name, 'locales')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeValue</td>
+	<td>//input[contains(@name, 'locales')]</td>
+	<td>alreadyDefinedLanguages</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[contains(@name, 'locales')]</td>
+	<td>en_HU,${alreadyDefinedLanguages}</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Save']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td>Your request processed successfully.</td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>PortalPingToCreateMinifierTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">PortalPingToCreateMinifierTest</td></tr>
+</thead><tbody>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/web/guest/home/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>javascript{&quot; value = '/html/js/barebone.jsp?browserId=firefox&amp;themeId=osb_WAR_osbtheme&amp;colorSchemeId=01&amp;minifierType=js&amp;minifierBundleId=javascript.everything.files&amp;languageId=en_US&amp;b=6013&amp;t=1338346663892' &quot;}</td>
+	<td>baseURL</td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>startOpenMinifierPage</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>javascript{&quot; var counter; if (typeof(storedVars['openCounter']) == 'undefined') {counter = 1;} else {counter = parseInt(storedVars['openCounter'], 10) + 1;} &quot;}</td>
+	<td>openCounter</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>javascript{&quot; url = storedVars['baseURL'] + storedVars['openCounter']; &quot;}</td>
+	<td>openURL</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>${openURL}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${openCounter} &lt; 200</td>
+	<td>startOpenMinifierPage</td>
+</tr>
+</tbody></table>
+</body>
+</html>

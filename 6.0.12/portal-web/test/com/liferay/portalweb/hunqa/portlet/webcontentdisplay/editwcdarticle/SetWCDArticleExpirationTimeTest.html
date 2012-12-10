@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>SetWCDArticleExpirationTimeTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SetWCDArticleExpirationTimeTest</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/web/guest/home/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Web Content Display Test Page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Web Content Display Test Page</td>
+	<td>Web Content Display Test Page</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//img[@alt='Edit Web Content']</td>
+	<td>Edit Web Content</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>_15_title</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPresent</td>
+	<td>link=Advanced*</td>
+	<td>BasicMode</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>!${BasicMode}</td>
+	<td>advancedPresent</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>link=Advanced*</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=*Basic</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>advancedPresent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeVisible</td>
+	<td>//div[@id='journalSchedulePanel']/div[2]</td>
+	<td>journalSchedule</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${journalSchedule}</td>
+	<td>journalScheduleVisible</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//div[@id='journalSchedulePanel']/div</td>
+	<td>Schedule</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>journalScheduleVisible</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeChecked</td>
+	<td>//input[@id='_15_neverExpireCheckbox']</td>
+	<td>neverAutoExpirationCheckbox</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>!${neverAutoExpirationCheckbox}</td>
+	<td>neverAutoExpirationNotChecked</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//input[@id='_15_neverExpireCheckbox']</td>
+	<td>Never Auto Expire</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>neverAutoExpirationNotChecked</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeCurrentYear</td>
+	<td>currentYear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//select[@id='_15_expirationDateYear']</td>
+	<td>${currentYear}</td>
+</tr>
+<tr>
+	<td>storeSelectedLabel</td>
+	<td>//select[@name='_15_expirationDateHour']</td>
+	<td>currentExpirationHour</td>
+</tr>
+<tr>
+	<td>storeValue</td>
+	<td>//select[@name='_15_expirationDateMinute']</td>
+	<td>currentExpirationMinute</td>
+</tr>
+<tr>
+	<td>storeValue</td>
+	<td>//select[@name='_15_expirationDateAmPm']</td>
+	<td>currentExpirationAmPm</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>javascript{&quot; var currentHour = parseInt(storedVars['currentExpirationHour'], 10); var currentMinute = parseInt(storedVars['currentExpirationMinute'], 10); if (currentMinute + 1 &gt; 59) { 	if (currentHour + 1 &gt; 12) { newExpirationHour = 1; } 	else { newExpirationHour = currentHour + 1; } } else { newExpirationHour = currentHour; } &quot;}</td>
+	<td>newExpirationHour</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>javascript{&quot; var currentMinute = parseInt(storedVars['currentExpirationMinute'], 10); if (currentMinute + 1 &gt; 59) { newExpirationMinute = 0; } else { newExpirationMinute = currentMinute + 1; } if (newExpirationMinute &lt; 10) {	newExpirationMinute = '0' + newExpirationMinute; } &quot;}</td>
+	<td>newExpirationMinute</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>javascript{&quot; var currentHour = parseInt(storedVars['currentExpirationHour'], 10); var currentAmPm = storedVars['currentExpirationAmPm']; if (currentHour + 1 &gt; 12) { if (currentAmPm == 0) { currentAmPm = 1; } else { currentAmPm = 0; } } else {	newExpirationAmPm = currentAmPm; } &quot;}</td>
+	<td>newExpirationAmPm</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//select[@name='_15_expirationDateHour']</td>
+	<td>label=${newExpirationHour}</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//select[@name='_15_expirationDateMinute']</td>
+	<td>:${newExpirationMinute}</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//select[@name='_15_expirationDateAmPm']</td>
+	<td>value=${newExpirationAmPm}</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Publish']</td>
+	<td>Publish</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//p</td>
+	<td>This is a test WCD article's content.</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>60000</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

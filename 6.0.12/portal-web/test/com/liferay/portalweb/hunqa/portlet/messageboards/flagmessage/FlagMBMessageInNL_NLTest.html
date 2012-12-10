@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>FlagMBMessageInNL_NLTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">FlagMBMessageInNL_NLTest</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/web/guest/home/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//nav/ul/li/span/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>//nav/ul/li/span/a</td>
+	<td>guestCommunity</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Message Boards Test Page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Message Boards Test Page</td>
+	<td>Message Boards Test Page</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//tr[3]/td[1]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]/td[1]/a</td>
+	<td>Test Message Subject</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//tr[3]/td[2]/a</td>
+	<td>Flag</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//tr[3]/td[3]/a</td>
+	<td>Started By</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//tr[3]/td[4]/a</td>
+	<td>Posts</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//tr[3]/td[5]/a</td>
+	<td>Views</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//tr[3]/td[6]/a</td>
+	<td>Last Post</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//tr[3]/td[7]//*/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//tr[3]/td[1]/a</td>
+	<td>Test Message Subject</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[1]/h1/span</td>
+	<td>Test Message Subject</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a/strong</td>
+	<td>Test Message Subject</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//td[2]/div[2]</td>
+	<td>This is a test message body.</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@class='taglib-flags']/span/a</td>
+	<td>Markeer</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@class='taglib-flags']/span/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//form[@id='_142_flagsForm']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//form[@id='_142_flagsForm']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//select[@id='_142_reason']</td>
+	<td>value=other</td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//input[@id='_142_otherReason']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id='_142_otherReason']</td>
+	<td>This is a Test flag reason.</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@id='_142_flagsSubmit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div/p/strong</td>
+	<td>Bedankt voor uw melding.</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[p/strong]/p[2]</td>
+	<td>Ondanks dat wij ons besluit niet kenbaar willen maken, wij herzien elk verzoek en waarderen uw inzet om ${guestCommunity} een veilige omgeving voor iedereen te laten zijn.</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button[@id='closethick']</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

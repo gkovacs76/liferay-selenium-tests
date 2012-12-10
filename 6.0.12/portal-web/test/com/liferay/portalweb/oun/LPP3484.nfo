@@ -1,0 +1,31 @@
+LPP3484_PermissionDocumentLibrary_TestPlan:
+	LPP-1989: PermissionsDocumentLibraryTestSuite,
+
+LPP3484_PermissionImageGallery_TestPlan:
+	LPP-1989: PermissionsImageGalleryTestSuite,
+
+LPP3484_PortalWebCalendar_TestPlan:
+	LPE-7020: PortalWebCalendarTestSuite,
+
+LPP3484_PortalWebDocumentLibrary_TestPlan:
+	LPP-2360, LPE-7026, LPE-7066, LPP-2360: PortalWebDocumentLibraryTestSuite
+
+LPP3484_PortalWebWiki_TestPlan:
+	LPP-2247: PortalWebWikiTestSuite
+
+LPP3484 My tests	:
+	LPE-6752: user/guest can	 create admin
+	LPE-5755: WCDEditArticleWithOtherUserTests
+	LPE-6761: JSON_AssignUserArminRoleTests, JSON_AssignUserCommunityTests, JSON_AssignUserToOrganizationTests,
+	LPE-6764: Plugins_WebFormExclusiveStateTests,
+	LPE-7026: DocumentLibraryDownloadDocumentTests,
+	LPE-7066: DocumentLibraryDeleteDocumentTests,
+	LPP-2239: WCDUploadFileTests,
+	LPP-2247: UserGroupGmailViewEditWikiPageTests, WikiGmailViewWikiPageCommentTests
+	LPP-2712: AssetPublisherAssetLinkBehaviourTests,
+	
+
+Not available tests:
+	LPE-6752: user/guest can create admin /JSON not able to cast User class
+	LPP-2136: Remove one portlet all permission, result default permissions sets back
+	LPE-5805, LPE-5862, LPE-5852, LPE-6499, LPE-6500, LPE-6712, LPE-6760, LPE-6800, LPE-7020

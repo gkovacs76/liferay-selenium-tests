@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>EditMBCategoryMessageTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">EditMBCategoryMessageTest</td></tr>
+</thead><tbody>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>relative=top</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/web/guest/home/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Message Boards Test Page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Message Boards Test Page</td>
+	<td>Message Boards Test Page</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='messageBoardsCategoriesPanel']//*/td/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertPartialText</td>
+	<td>//div[@id='messageBoardsCategoriesPanel']//*/td/a</td>
+	<td>Test Category Name</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//div[@id='messageBoardsCategoriesPanel']//*/td/a</td>
+	<td>Test Category Name</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='messageBoardsThreadsPanel']//*/td/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='messageBoardsThreadsPanel']//*/td/a</td>
+	<td>Test Message Subject</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id='messageBoardsThreadsPanel']//*/span[@title='Actions']/ul/li/strong/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//div[@id='messageBoardsThreadsPanel']//*/span[@title='Actions']/ul/li/strong/a</td>
+	<td>Actions</td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//div[@class='lfr-component lfr-menu-list']/ul/li[1]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@class='lfr-component lfr-menu-list']/ul/li[1]/a</td>
+	<td>Edit</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//div[@class='lfr-component lfr-menu-list']/ul/li[1]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//h1[@class='header-title']/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//h1[@class='header-title']/span</td>
+	<td>Test Message Subject</td>
+</tr>
+<tr>
+	<td>assertAttribute</td>
+	<td>//input[@id='_19_subject']@value</td>
+	<td>Test Message Subject</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//input[@id='_19_subject']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id='_19_subject']</td>
+	<td>Edited Test Message Subject</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//textarea[@id='_19_editor']</td>
+	<td>This is an edited test message body.</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Publish']</td>
+	<td>Publish</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td>Your request processed successfully.</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div/h1/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div/h1/span</td>
+	<td>Edited Test Message Subject</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@class='thread-body']</td>
+	<td>This is an edited test message body.</td>
+</tr>
+</tbody></table>
+</body>
+</html>

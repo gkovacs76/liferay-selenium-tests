@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>DefineWCCreatorRoleTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">DefineWCCreatorRoleTest</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/web/guest/home/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Control Panel</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Control Panel</td>
+	<td>Control Panel</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Roles</td>
+	<td>Roles</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Add</td>
+	<td>Add</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//input[@id='_128_name']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id='_128_name']</td>
+	<td>Test Web Content Creator Role</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id='_128_title_en_US']</td>
+	<td>Test Web Content Creator Role Title</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//textarea[@id='_128_description']</td>
+	<td>This is the description of the Test Web Content Creator Role.</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//select[@id='_128_type']</td>
+	<td>Regular</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Save']</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td>Your request processed successfully.</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Roles</td>
+	<td>Roles</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//input[@id='_128_keywords']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id='_128_keywords']</td>
+	<td>&quot;Test Web Content Creator Role&quot;</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Search']</td>
+	<td>Search</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//tr[td/a[contains(text(), 'Test Web Content Creator Role Title')]]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//tr[td/a[contains(text(), 'Test Web Content Creator Role Title')]]//*/span[contains(@title, 'Actions')]/ul/li/strong/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//tr[td/a[contains(text(), 'Test Web Content Creator Role Title')]]//*/span[contains(@title, 'Actions')]/ul/li/strong/a</td>
+	<td>Actions</td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//div[@class='lfr-component lfr-menu-list']/ul/li[3]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@class='lfr-component lfr-menu-list']/ul/li[3]/a</td>
+	<td>Define Permissions</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//div[@class='lfr-component lfr-menu-list']/ul/li[3]/a</td>
+	<td>Define Permissions</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//select[@id='_128_add-permissions']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>typeKeys</td>
+	<td>//select[@id='_128_add-permissions']</td>
+	<td>w</td>
+</tr>
+<tr>
+	<td>keyPressAndWait</td>
+	<td>//select[@id='_128_add-permissions']</td>
+	<td>\13</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//form/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form/h3</td>
+	<td>Web Content</td>
+</tr>
+<tr>
+	<td>storeChecked</td>
+	<td>//input[contains(@value, 'JournalArticleUPDATE')]</td>
+	<td>updateChecked1</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${updateChecked1}</td>
+	<td>updateChecked1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[contains(@value, 'JournalArticleUPDATE')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>updateChecked1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>//input[contains(@value, 'JournalArticleUPDATE')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeChecked</td>
+	<td>//input[contains(@value, 'JournalArticleVIEW')]</td>
+	<td>viewChecked1</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${viewChecked1}</td>
+	<td>viewChecked1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[contains(@value, 'JournalArticleVIEW')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>viewChecked1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>//input[contains(@value, 'JournalArticleVIEW')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeChecked</td>
+	<td>//input[contains(@value, 'journalADD_ARTICLE')]</td>
+	<td>addArticle</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${addArticle}</td>
+	<td>addArticleChecked</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[contains(@value, 'journalADD_ARTICLE')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>addArticleChecked</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>//input[contains(@value, 'journalADD_ARTICLE')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeChecked</td>
+	<td>//input[contains(@value, 'journalADD_STRUCTURE')]</td>
+	<td>addStructure</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${addStructure}</td>
+	<td>addStructureChecked</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[contains(@value, 'journalADD_STRUCTURE')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>addStructureChecked</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>//input[contains(@value, 'journalADD_STRUCTURE')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeChecked</td>
+	<td>//input[contains(@value, 'journalADD_TEMPLATE')]</td>
+	<td>addTemplate</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${addTemplate}</td>
+	<td>addTemplateChecked</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[contains(@value, 'journalADD_TEMPLATE')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>addTemplateChecked</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>//input[contains(@value, 'journalADD_TEMPLATE')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeChecked</td>
+	<td>//input[contains(@value, 'JournalStructureDELETE')]</td>
+	<td>deleteStructure</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${deleteStructure}</td>
+	<td>deleteStructureChecked</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[contains(@value, 'JournalStructureDELETE')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>deleteStructureChecked</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>//input[contains(@value, 'JournalStructureDELETE')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeChecked</td>
+	<td>//input[contains(@value, 'JournalStructureVIEW')]</td>
+	<td>viewStructure</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${viewStructure}</td>
+	<td>viewStructureChecked</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[contains(@value, 'JournalStructureVIEW')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>viewStructureChecked</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>//input[contains(@value, 'JournalStructureVIEW')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeChecked</td>
+	<td>//input[contains(@value, 'JournalTemplateDELETE')]</td>
+	<td>deleteTemplate</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${deleteTemplate}</td>
+	<td>deleteTemplateChecked</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[contains(@value, 'JournalTemplateDELETE')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>deleteTemplateChecked</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>//input[contains(@value, 'JournalTemplateDELETE')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeChecked</td>
+	<td>//input[contains(@value, 'JournalTemplateVIEW')]</td>
+	<td>viewTemplate</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${viewTemplate}</td>
+	<td>viewTemplateChecked</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[contains(@value, 'JournalTemplateVIEW')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>viewTemplateChecked</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>//input[contains(@value, 'JournalTemplateVIEW')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Save']</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td>The role permissions were updated.</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//select[@id='_128_add-permissions']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>typeKeys</td>
+	<td>//select[@id='_128_add-permissions']</td>
+	<td>www</td>
+</tr>
+<tr>
+	<td>keyPressAndWait</td>
+	<td>//select[@id='_128_add-permissions']</td>
+	<td>\13</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//form/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form/h3</td>
+	<td>Web Content Display</td>
+</tr>
+<tr>
+	<td>storeChecked</td>
+	<td>//input[contains(@value, '56CONFIGURATION')]</td>
+	<td>wcdConfiguration</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${wcdConfiguration}</td>
+	<td>wcdConfigurationChecked</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[contains(@value, '56CONFIGURATION')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>wcdConfigurationChecked</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>//input[contains(@value, '56CONFIGURATION')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeChecked</td>
+	<td>//input[contains(@value, 'VIEW')]</td>
+	<td>viewChecked2</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${viewChecked2}</td>
+	<td>viewChecked2</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[contains(@value, 'VIEW')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>viewChecked2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>//input[contains(@value, 'VIEW')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Save']</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td>The role permissions were updated.</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//select[@id='_128_add-permissions']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>typeKeys</td>
+	<td>//select[@id='_128_add-permissions']</td>
+	<td>wwwwwwwwwww</td>
+</tr>
+<tr>
+	<td>keyPressAndWait</td>
+	<td>//select[@id='_128_add-permissions']</td>
+	<td>\13</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//form/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form/h3</td>
+	<td>Web Content</td>
+</tr>
+<tr>
+	<td>storeChecked</td>
+	<td>//input[contains(@value, 'ACCESS_IN_CONTROL_PANEL')]</td>
+	<td>accessChecked1</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${accessChecked1}</td>
+	<td>accessChecked1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[contains(@value, 'ACCESS_IN_CONTROL_PANEL')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>accessChecked1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>//input[contains(@value, 'ACCESS_IN_CONTROL_PANEL')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeChecked</td>
+	<td>//input[contains(@value, 'VIEW')]</td>
+	<td>viewChecked3</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${viewChecked3}</td>
+	<td>viewChecked3</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[contains(@value, 'VIEW')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>viewChecked3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>//input[contains(@value, 'VIEW')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Save']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td>The role permissions were updated.</td>
+</tr>
+</tbody></table>
+</body>
+</html>

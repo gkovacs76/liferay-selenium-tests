@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>AssertDefaultChangeFrequencyPresentTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">AssertDefaultChangeFrequencyPresentTest</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/web/guest/home/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>main-content</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>dockbar</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>navigation</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='_145_manageContentContainer']/div/ul/li[4]/a</td>
+	<td>Settings</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='_145_manageContentContainer']/div/ul/li[4]/a</td>
+	<td>Settings</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//div[@id='_145_manageContentContainer']/div/ul/li[4]/a</td>
+	<td>Settings</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//ul/li[3]/span/span/a[contains(text(), 'Sitemap')]</td>
+	<td>Sitemap</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>link=preview</td>
+	<td>preview</td>
+</tr>
+<tr>
+	<td>waitForPopUp</td>
+	<td></td>
+	<td>30000</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>javascript{&quot;var windowId; for(var x in selenium.browserbot.openedWindows ){windowId=x;} &quot;}</td>
+	<td>popUpPage</td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>${popUpPage}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresentXML</td>
+	<td>&lt;changefreq&gt;daily&lt;/changefreq&gt;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotTextPresentXML</td>
+	<td>&lt;changefreq&gt;always&lt;/changefreq&gt;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>close</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

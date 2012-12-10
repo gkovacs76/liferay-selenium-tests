@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>CKEditorAlertCookieTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">CKEditorAlertCookieTest</td></tr>
+</thead><tbody>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/web/guest/home/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>openWindow</td>
+	<td>/home?p_p_id=15&amp;p_p_lifecycle=2&amp;_15_struts_action=/journal/edit_article&amp;editorImpl=ckeditor&amp;ckEditorConfigFileName=ckconfig.jsp%27%2Ca%3Aalert%28document.cookie%29%2Cb%3A%27</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPopUp</td>
+	<td></td>
+	<td>30000</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>javascript{&quot;var windowId; for(var x in selenium.browserbot.openedWindows ){windowId=x;} &quot;}</td>
+	<td>popUpPage</td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>${popUpPage}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>javascript{&quot; var scripts = this.browserbot.getCurrentWindow().document.getElementsByTagName('script'); var scriptPresent = false; for (var i = 0;&nbsp;&nbsp;i &lt; scripts.length; i++) { if ((scripts[i].text).indexOf('alert(document.cookie)') != -1) { scriptPresent = true; break;} } scriptPresent; &quot;}</td>
+	<td>false</td>
+</tr>
+<tr>
+	<td>close</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

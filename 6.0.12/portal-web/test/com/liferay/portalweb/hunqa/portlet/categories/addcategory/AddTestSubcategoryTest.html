@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>AddTestSubcategoryTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">AddTestSubcategoryTest</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/web/guest/home/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Control Panel</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Control Panel</td>
+	<td>Control Panel</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Categories</td>
+	<td>Categories</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//input[@value='Add Category']</td>
+	<td>Add Category</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//div[contains(@class, 'add-category-layer')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[contains(@class, 'add-category-layer')]//*/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//div[contains(@class, 'add-category-layer')]//*/input</td>
+	<td>Test SubCategory</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[contains(@class, 'add-category-layer')]//*/select[@class='vocabulary-select-list']</td>
+	<td>Test Vocabulary</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//div[contains(@class, 'add-category-layer')]//*/input[@class='category-save-button' and @value='Save']</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//span/a[contains(text(), 'Test Vocabulary')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//span/a[contains(text(), 'Test Vocabulary')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//div[contains(text(), 'Test SubCategory')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//div[contains(text(), 'Test SubCategory')]</td>
+	<td>Test SubCategory</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[contains(text(), 'Test SubCategory')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//td[@class='vocabulary-edit-category']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>//div[contains(text(), 'Test SubCategory')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//span[@class='aui-tree-drag-helper-label']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//span[@class='aui-tree-drag-helper-label']</td>
+	<td>Test SubCategory</td>
+</tr>
+<tr>
+	<td>mouseMoveAt</td>
+	<td>//div[contains(text(), 'Test Category')]</td>
+	<td>0,10</td>
+</tr>
+<tr>
+	<td>mouseMoveAt</td>
+	<td>//div[contains(text(), 'Test Category')]</td>
+	<td>0,10</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>//div[contains(text(), 'Test Category')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>//div[contains(text(), 'Test Category')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//li/ul/li/div/div[contains(text(), 'Test SubCategory')]</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

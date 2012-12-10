@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>AssertHeaderNotContainsPortalVersionTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">AssertHeaderNotContainsPortalVersionTest</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/web/guest/home/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeLocation</td>
+	<td>location</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>var client = new XMLHttpRequest(); client.open(&quot;GET&quot;, storedVars['location'], false); client.send(null); name = client.getAllResponseHeaders();</td>
+	<td>headers</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>var header = storedVars['headers']; header = header.replace(/(\r&amp;#92;n|&amp;#92;n|\r)/gm,&quot;&amp;#92;n&quot;); var startPortalVersion = header.indexOf('Liferay-Portal:') + 16; var endPortalVersion = header.indexOf('&amp;#92;n', startPortalVersion); portalVersion = header.substring(startPortalVersion, endPortalVersion);</td>
+	<td>portalVersion</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>javascript{" storedVars['portalVersion'].indexOf('6.0 EE SP2') == -1; "}</td>
+	<td>true</td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>ConfigureWebFormFieldsValidationTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">ConfigureWebFormFieldsValidationTest</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/web/guest/home/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Web Form Test Page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Web Form Test Page</td>
+	<td>Web Form Test Page</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//legend/span</td>
+	<td>Suggestions</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//em</td>
+	<td>Your input is valuable to us. Please send us your suggestions.</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//label</td>
+	<td>Name</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//span[2]/span/label</td>
+	<td>Rating</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//select</td>
+	<td>Excellent Good Satisfactory Poor</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//span[3]/span/label</td>
+	<td>Comments</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//span[@title='Options']/ul/li/strong/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//span[@title='Options']/ul/li/strong/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//span[@title='Options']/ul/li/strong/a</td>
+	<td>Option</td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//li[contains(@class, 'portlet-configuration')]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//li[contains(@class, 'portlet-configuration')]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//li[contains(@class, 'portlet-configuration')]/a</td>
+	<td>Configuration</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//iframe[contains(@class, 'configuration-frame')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//iframe[contains(@class, 'configuration-frame')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>//iframe[contains(@class, 'configuration-frame')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>//iframe[contains(@class, 'configuration-frame')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>_86_title_en_US</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>_86_fieldValidationScript1</td>
+	<td>return true;</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>_86_fieldValidationErrorMessage1</td>
+	<td>Name error message.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>_86_fieldValidationScript2</td>
+	<td>return true;</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>_86_fieldValidationErrorMessage2</td>
+	<td>Rating error message.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>_86_fieldValidationScript3</td>
+	<td>return true;</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>_86_fieldValidationErrorMessage3</td>
+	<td>Comment error message.</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Save']</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td>You have successfully updated the setup.</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>relative=top</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button[@id='closethick']</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

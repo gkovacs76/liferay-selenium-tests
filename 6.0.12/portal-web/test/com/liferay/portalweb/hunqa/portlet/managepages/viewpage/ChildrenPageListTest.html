@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>ChildrenPageListTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">ChildrenPageListTest</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/web/guest/home/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//nav[@class='site-breadcrumbs']/ul/li[1]/span/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>//nav[@class='site-breadcrumbs']/ul/li[1]/span/a</td>
+	<td>guestCommunity</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>main-content</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>dockbar</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>navigation</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//div/div[3]/div/ul/li[1]/a</td>
+	<td>Page</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div/div[3]/a</td>
+	<td>${guestCommunity}</td>
+</tr>
+<tr>
+	<td>storeElementPresent</td>
+	<td>//li/ul/li/div/div[3]/a</td>
+	<td>mainPagesVisible</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${mainPagesVisible}</td>
+	<td>mainPagesVisible</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@class='aui-tree-hitarea']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//li/ul/li/div/div[3]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>mainPagesVisible</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//ul/li[2]/div/div[3]/a</td>
+	<td>Test Page</td>
+</tr>
+<tr>
+	<td>storeElementPresent</td>
+	<td>//li/ul/li[2]/ul/li/div/div[3]/a</td>
+	<td>childPagesVisible</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${childPagesVisible}</td>
+	<td>childPagesVisible</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//ul/li/ul/li[2]/div/div[@class='aui-tree-hitarea']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//li/ul/li[2]/ul/li/div/div[3]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>childPagesVisible</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//li/ul/li[21]/div/div[3]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[@class='aui-tree-node-paginator']</td>
+	<td>Load more results</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//a[@class='aui-tree-node-paginator']</td>
+	<td>Load more results</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//li/ul/li[21]/div/div[3]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//li/ul/li[21]/div/div[3]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//li/ul/li[30]/div/div[3]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//li/ul/li[30]/div/div[3]/a</td>
+	<td>30. Child Test Page</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//a[@class='aui-tree-node-paginator']</td>
+	<td>Load more results</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//a[@class='aui-tree-node-paginator']</td>
+	<td>Load more results</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//li/ul/li[30]/div/div[3]/a</td>
+	<td>30. Child Test Page</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//td/div/h1/span</td>
+	<td>30. Child Test Page</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//li/ul/li[30]/div/div[3]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//li/ul/li[30]/div/div[3]/a</td>
+	<td>30. Child Test Page</td>
+</tr>
+</tbody></table>
+</body>
+</html>

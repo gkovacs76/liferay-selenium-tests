@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>FailDeleteDLAnotherDocumentTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">FailDeleteDLAnotherDocumentTest</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/web/guest/home/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Document Library Test Page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Document Library Test Page</td>
+	<td>Document Library Test Page</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]//*/a/div</td>
+	<td>This is test Text Document1 Description.</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[4]//*/a/div</td>
+	<td>This is test Text Document2 Description.</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//tr[3]//*/a/div</td>
+	<td>This is test Text Document1 Description.</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//h1[@class='header-title']/span</td>
+	<td>Test Text Document1 Title</td>
+</tr>
+<tr>
+	<td>storeValue</td>
+	<td>//input[@id='_20_folderId']</td>
+	<td>folderId</td>
+</tr>
+<tr>
+	<td>storeValue</td>
+	<td>//input[@id='_20_name']</td>
+	<td>fileName</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/web/guest/home/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Document Library Test Page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Document Library Test Page</td>
+	<td>Document Library Test Page</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]//*/a/div</td>
+	<td>This is test Text Document1 Description.</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[4]//*/a/div</td>
+	<td>This is test Text Document2 Description.</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//tr[4]//*/a/div</td>
+	<td>This is test Text Document2 Description.</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//h1[@class='header-title']/span</td>
+	<td>Test Text Document2 Title</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]/td[7]/span/a</td>
+	<td>Delete</td>
+</tr>
+<tr>
+	<td>storeAttribute</td>
+	<td>//tr[3]/td[7]/span/a@href</td>
+	<td>fileDeleteLink</td>
+</tr>
+<tr>
+	<td>storeAttribute</td>
+	<td>//tr[3]/td[7]/span/a@id</td>
+	<td>fileDeleteId</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>javascript{" var deleteLink = storedVars['fileDeleteLink']; var fileVersionStart = deleteLink.indexOf('%26_20_version'); var fileVersionEnd = deleteLink.indexOf('1.0', fileVersionStart); newLink = deleteLink.substring(0, fileVersionStart) + '%26_20_version%3d../' + storedVars['fileName'] + '/' + deleteLink.substring(fileVersionEnd); "}</td>
+	<td>modifiedDeleteLink</td>
+</tr>
+<tr>
+	<td>getEval</td>
+	<td>javascript{" var element = this.browserbot.getCurrentWindow().document.getElementById(storedVars['fileDeleteId']); element.removeAttribute('href'); element.setAttribute('href', storedVars['modifiedDeleteLink']); "}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//tr[3]/td[7]/span/a</td>
+	<td>Delete</td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure you want to delete this?</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

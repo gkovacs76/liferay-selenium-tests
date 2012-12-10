@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+
+<project name="portal-test-control-panel" basedir="../../." default="test-tomcat-mysql-firefox" xmlns:antelope="antlib:ise.antelope.tasks">
+	<import file="../../build-test-ext.xml" />
+
+	<target name="test-tomcat-mysql-firefox">
+		<antcall target="test-tomcat-mysql" />
+	</target>
+
+	<target name="test-tomcat-mysql-iexplore">
+		<property name="test.browser" value="iexploreproxy" />
+
+		<antcall target="test-tomcat-mysql" />
+	</target>
+
+	<target name="test-remote-tomcat-mysql-iexplore">
+		<property name="portal.url" value="http://192.168.211.36:8080" />
+		<property name="test.browser" value="iexploreproxy" />
+
+		<antcall target="test-tomcat-mysql" />
+	</target>
+
+	<target name="test-remote-tomcat-mysql-firefox">
+		<property name="portal.url" value="http://192.168.211.36:8080" />
+
+		<antcall target="test-tomcat-mysql" />
+	</target>
+
+	<target name="test-tomcat-mysql">
+		<ant antfile="build-test-tomcat-ext.xml" target="prepare-selenium-tomcat" inheritAll="false">
+			<property name="custom.properties" value="" />
+			<property name="prepare.portal.from.bundle" value="true" />
+		</ant>
+
+		<ant antfile="build-test-tomcat-ext.xml" target="run-tomcat-test" inheritAll="false">
+			<property name="test1.name" value="ControlPanelAdminTestSuite" />
+		</ant>
+
+		<ant antfile="build-test-tomcat-ext.xml" target="run-tomcat-test" inheritAll="false">
+			<property name="test1.name" value="ControlPanelBlogsTestSuite" />
+		</ant>
+
+		<ant antfile="build-test-tomcat-ext.xml" target="run-tomcat-test" inheritAll="false">
+			<property name="test1.name" value="ControlPanelBookmarksTestSuite" />
+		</ant>
+
+		<ant antfile="build-test-tomcat-ext.xml" target="run-tomcat-test" inheritAll="false">
+			<property name="test1.name" value="ControlPanelCalendarTestSuite" />
+		</ant>
+
+		<ant antfile="build-test-tomcat-ext.xml" target="run-tomcat-test" inheritAll="false">
+			<property name="test1.name" value="ControlPanelCategoriesTestSuite" />
+		</ant>
+
+		<ant antfile="build-test-tomcat-ext.xml" target="run-tomcat-test" inheritAll="false">
+			<property name="test1.name" value="ControlPanelDynamicDataListsTestSuite" />
+		</ant>
+
+		<ant antfile="build-test-tomcat-ext.xml" target="run-tomcat-test" inheritAll="false">
+			<property name="test1.name" value="ControlPanelMessageBoardsTestSuite" />
+		</ant>
+
+		<ant antfile="build-test-tomcat-ext.xml" target="run-tomcat-test" inheritAll="false">
+			<property name="test1.name" value="ControlPanelOrganizationsTestSuite" />
+		</ant>
+
+		<ant antfile="build-test-tomcat-ext.xml" target="run-tomcat-test" inheritAll="false">
+			<property name="test1.name" value="ControlPanelPageTemplatesTestSuite" />
+		</ant>
+
+		<ant antfile="build-test-tomcat-ext.xml" target="run-tomcat-test" inheritAll="false">
+			<property name="test1.name" value="ControlPanelPasswordPoliciesTestSuite" />
+		</ant>
+
+		<ant antfile="build-test-tomcat-ext.xml" target="run-tomcat-test" inheritAll="false">
+			<property name="test1.name" value="ControlPanelPollsTestSuite" />
+		</ant>
+
+		<ant antfile="build-test-tomcat-ext.xml" target="run-tomcat-test" inheritAll="false">
+			<property name="test1.name" value="ControlPanelRolesTestSuite" />
+		</ant>
+
+		<ant antfile="build-test-tomcat-ext.xml" target="run-tomcat-test" inheritAll="false">
+			<property name="test1.name" value="ControlPanelSettingsTestSuite" />
+		</ant>
+
+		<ant antfile="build-test-tomcat-ext.xml" target="run-tomcat-test" inheritAll="false">
+			<property name="test1.name" value="ControlPanelSitesTestSuite" />
+		</ant>
+
+		<ant antfile="build-test-tomcat-ext.xml" target="run-tomcat-test" inheritAll="false">
+			<property name="test1.name" value="ControlPanelSocialActivityTestSuite" />
+		</ant>
+
+		<ant antfile="build-test-tomcat-ext.xml" target="run-tomcat-test" inheritAll="false">
+			<property name="test1.name" value="ControlPanelUserGroupTestSuite" />
+		</ant>
+
+		<ant antfile="build-test-tomcat-ext.xml" target="run-tomcat-test" inheritAll="false">
+			<property name="test1.name" value="ControlPanelUsersTestSuite" />
+		</ant>
+
+		<ant antfile="build-test-tomcat-ext.xml" target="run-tomcat-test" inheritAll="false">
+			<property name="test1.name" value="ControlPanelVirtualHostingTestSuite" />
+		</ant>
+
+		<ant antfile="build-test-tomcat-ext.xml" target="run-tomcat-test" inheritAll="false">
+			<property name="test1.name" value="ControlPanelWebContentTestSuite" />
+		</ant>
+
+		<antcall target="send-test-results" />
+	</target>
+</project>

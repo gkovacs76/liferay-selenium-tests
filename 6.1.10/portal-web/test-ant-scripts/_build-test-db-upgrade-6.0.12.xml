@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+
+<project name="portal-test-db-upgrade-6.0.12" basedir="../../." default="test-tomcat-mysql-firefox" xmlns:antelope="antlib:ise.antelope.tasks">
+	<import file="../../build-test-ext.xml" />
+
+	<target name="test-tomcat-mysql-firefox">
+		<antcall target="test-tomcat-mysql" />
+	</target>
+
+	<target name="test-tomcat-mysql-iexplore">
+		<property name="test.browser" value="iexploreproxy" />
+
+		<antcall target="test-tomcat-mysql" />
+	</target>
+
+	<target name="test-remote-tomcat-mysql-iexplore">
+		<property name="portal.url" value="http://192.168.211.36:8080" />
+		<property name="test.browser" value="iexploreproxy" />
+
+		<antcall target="test-tomcat-mysql" />
+	</target>
+
+	<target name="test-remote-tomcat-mysql-firefox">
+		<property name="portal.url" value="http://192.168.211.36:8080" />
+
+		<antcall target="test-tomcat-mysql" />
+	</target>
+
+	<target name="test-tomcat-mysql">
+		<property name="portal.url" value="http://localhost:8080" />
+
+		<ant antfile="build-test-tomcat-ext.xml" target="run-db-upgrade-tomcat-test" inheritAll="false">
+			<property name="db.type" value="mysql" />
+			<property name="portal.url" value="${portal.url}" />
+			<property name="test.browser" value="${test.browser}" />
+
+			<property name="upgrade.from-custom.properties" value="" />
+			<property name="upgrade.from-portal.version" value="6.0.12" />
+			<property name="upgrade.from-sql.version" value="6.0.12" />
+			<property name="upgrade.from-test.name" value="DBUpgradeDocumentLibrary6012TestSuite" />
+			<property name="upgrade.from-tomcat.version" value="6.0.32" />
+			<property name="upgrade.from-zipped.bundle.name" value="liferay-portal-tomcat-6.0-ee-sp2-20110727.zip" />
+
+			<property name="upgrade.to-custom.properties" value="" />
+			<property name="upgrade.to-portal.version" value="6.1.10" />
+			<property name="upgrade.to-test.name" value="DBUpgradeDocumentLibrary6012LatestTestSuite" />
+		</ant>
+
+	</target>
+</project>

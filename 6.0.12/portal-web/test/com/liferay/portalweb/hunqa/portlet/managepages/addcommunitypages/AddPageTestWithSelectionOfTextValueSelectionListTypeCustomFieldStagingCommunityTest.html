@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>AddPageTestWithSelectionOfTextValueSelectionListTypeCustomFieldStagingCommunityTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">AddPageTestWithSelectionOfTextValueSelectionListTypeCustomFieldStagingCommunityTest</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/web/test-community-name-staging/home-test-page/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>main-content</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>navigation</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>dockbar</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='_145_manageContentContainer']/div/ul/li[1]/a</td>
+	<td>Pages</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//div[@id='_145_manageContentContainer']/div/ul/li[1]/a</td>
+	<td>Pages</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div/div[3]/a</td>
+	<td>Test Community Name</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//div/div[3]/a</td>
+	<td>Test Community Name</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//td/ul/li/span/span/a</td>
+	<td>New Page</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//input[@name='_88_name_en_US']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@name='_88_name_en_US']</td>
+	<td>Test Page</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Add Page']</td>
+	<td>Add Page</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td>Your request processed successfully.</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div/div[3]/a</td>
+	<td>Test Community Name</td>
+</tr>
+<tr>
+	<td>storeElementPresent</td>
+	<td>//li/ul/li[1]/div/div[3]/a</td>
+	<td>homePresent</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${homePresent}</td>
+	<td>homePresent</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//div[2]/ul/li/div/div[1]</td>
+	<td>Drop Down Arrow</td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>homePresent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//li/ul/li[1]/div/div[3]/a</td>
+	<td>Home Test Page</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//li/ul/li[2]/div/div[3]/a</td>
+	<td>Test Page</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//li/ul/li[2]/div/div[3]/a</td>
+	<td>Test Page</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//td/ul/li/span/span/a</td>
+	<td>Page</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//select[contains(@name, '_88_ExpandoAttribute') and contains(@name, 'Selection Of Text Values Type Selection List Display Type Custom Field')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//select[contains(@name, '_88_ExpandoAttribute') and contains(@name, 'Selection Of Text Values Type Selection List Display Type Custom Field')]</td>
+	<td>Test value 2</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Save']</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td>Your request processed successfully.</td>
+</tr>
+</tbody></table>
+</body>
+</html>

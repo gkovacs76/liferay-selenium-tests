@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>GuestFailDeleteWebFormDataAcrossURLTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">GuestFailDeleteWebFormDataAcrossURLTest</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/web/guest/home/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPresent</td>
+	<td>link=Sign Out</td>
+	<td>signOutPresent</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>!${signOutPresent}</td>
+	<td>alreadySignedOut</td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>link=Sign Out</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Sign Out</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>//input[@value='Sign In']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>alreadySignedOut</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/web/guest/home/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Web Form Test Page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Web Form Test Page</td>
+	<td>Web Form Test Page</td>
+</tr>
+<tr>
+	<td>storeAttribute</td>
+	<td>//section[contains(@id, 'webformportlet')]@id</td>
+	<td>webFormPortletSectionId</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>javascript{&quot; storedVars['webFormPortletSectionId'].substring(8); &quot;}</td>
+	<td>webFormPortletId</td>
+</tr>
+<tr>
+	<td>storeAttribute</td>
+	<td>//header//*/a[contains(@href, 'p_auth')]@href</td>
+	<td>p_authId</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>javascript{&quot; var href = storedVars['p_authId']; var startAuthId = href.indexOf('p_auth=') + 7; var endAuthId = href.indexOf('&amp;', startAuthId); authId = href.substring(startAuthId, endAuthId); &quot;}</td>
+	<td>authId</td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>openWindow</td>
+	<td>/web/guest/web-form-test-page?p_auth=${authId}&amp;p_p_id=${webFormPortletId}&amp;p_p_lifecycle=1&amp;p_p_state=pop_up&amp;p_p_mode=view&amp;_${webFormPortletId}_javax.portlet.action=deleteData</td>
+	<td>webFormPortlet</td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>webFormPortlet</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//form[contains(@id, 'webformportlet')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//form[contains(@id, 'webformportlet')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>close</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

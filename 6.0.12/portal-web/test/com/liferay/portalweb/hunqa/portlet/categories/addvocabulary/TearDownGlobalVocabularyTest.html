@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>TearDownGlobalVocabularyTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">TearDownGlobalVocabularyTest</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/web/guest/home/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//nav/ul/li/span/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>//nav/ul/li/span/a</td>
+	<td>guestCommunity</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Control Panel</td>
+	<td>Control Panel</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='panel-manage-content']//*/span/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='panel-manage-content']//*/span/a</td>
+	<td>${guestCommunity}</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//div[@id='panel-manage-content']//*/span/a</td>
+	<td>${guestCommunity}</td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//div[@id='controlPanelMenuSharedCommunitiesPanel']//*/a[contains(text(), 'Global')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//div[@id='controlPanelMenuSharedCommunitiesPanel']//*/a[contains(text(), 'Global')]</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Categories</td>
+	<td>Categories</td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>startDeleteVocabularies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPresent</td>
+	<td>//div[contains(@class, 'vocabulary-list')]/ul/li/span/a</td>
+	<td>vocabularyPresent</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>!${vocabularyPresent}</td>
+	<td>endDeleteVocabularies</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//div[contains(@class, 'vocabulary-list')]/ul/li/span/a</td>
+	<td>VocabularyName</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//input[@value='Delete Vocabulary']</td>
+	<td>Delete Vocabulary</td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>Are you sure you want to delete this list?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>//div[contains(@class, 'vocabulary-list')]/ul/li/span/a</td>
+	<td>firstVocabularyName</td>
+</tr>
+<tr>
+	<td>storeElementPresent</td>
+	<td>//div[contains(@class, 'vocabulary-list')]/ul/li[2]/span/a</td>
+	<td>secundVocabularyPresent</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>!storedVars['secundVocabularyPresent'] &amp;&amp; storedVars['firstVocabularyName'] == "Topic"</td>
+	<td>endDeleteVocabularies</td>
+</tr>
+<tr>
+	<td>goto</td>
+	<td>startDeleteVocabularies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>endDeleteVocabularies</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='panel-manage-content']//*/span/a</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//div[@id='panel-manage-content']//*/span/a</td>
+	<td>Global</td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//div[@id='controlPanelMenuCommunitiesPanel']/div[2]//*/a[contains(text(), ${guestCommunity})]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//div[@id='controlPanelMenuCommunitiesPanel']/div[2]//*/a[contains(text(), ${guestCommunity})]</td>
+	<td>${guestCommunity}</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

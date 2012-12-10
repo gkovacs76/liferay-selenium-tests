@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>GmailServer_TearDownMailingListMessageTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">GmailServer_TearDownMailingListMessageTest</td></tr>
+</thead><tbody>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>relative=top</td>
+	<td></td>
+</tr>
+<tr>
+	<td>openWindow</td>
+	<td>http://www.gmail.com/</td>
+	<td>gmail</td>
+</tr>
+<tr>
+	<td>waitForPopUp</td>
+	<td>gmail</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>gmail</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>10000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPresent</td>
+	<td>link=Sign out</td>
+	<td>SignedIn1</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>!${SignedIn1}</td>
+	<td>SignedOut1</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Sign out</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>link=Sign out</td>
+	<td>Sign out</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//input[@id='signIn']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>SignedOut1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPresent</td>
+	<td>link=Sign out and sign in as a different user</td>
+	<td>signInAsADifferentUserPresent</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>!${signInAsADifferentUserPresent}</td>
+	<td>SignInAsADifferentUserNotPresent</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Sign out and sign in as a different user</td>
+	<td>Sign out and sign in as a different user</td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>SignInAsADifferentUserNotPresent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//input[@id='Email']</td>
+	<td>Username:</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id='Email']</td>
+	<td>liferay.qa.server.trunk</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id='Passwd']</td>
+	<td>loveispatient</td>
+</tr>
+<tr>
+	<td>storeChecked</td>
+	<td>//input[@id='PersistentCookie']</td>
+	<td>staySignedInChecked</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${staySignedInChecked}</td>
+	<td>StaySignedInChecked</td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>//input[@id='PersistentCookie']</td>
+	<td>Stay signed in</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//input[@id='PersistentCookie']</td>
+	<td>Stay signed in</td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>StaySignedInChecked</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>//input[@id='PersistentCookie']</td>
+	<td>Stay signed in</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@id='signIn']</td>
+	<td>Sign In</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>close</td>
+	<td>gmail</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>10000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>openWindow</td>
+	<td>http://groups.google.com/</td>
+	<td>Google Groups</td>
+</tr>
+<tr>
+	<td>waitForPopUp</td>
+	<td>Google Groups</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>Google Groups</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>10000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//td/a/span</td>
+	<td>My groups</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//td/a/span</td>
+	<td>My groups</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//td/a/span</td>
+	<td>My groups</td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//tr[2]/td/div/div/a</td>
+	<td>liferay-mailinglist</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[2]/td/div/div/a</td>
+	<td>liferay-mailinglist</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//span/span[2]/span</td>
+	<td>liferay-mailinglist</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//span/span[2]/span</td>
+	<td>liferay-mailinglist</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>10000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>startDeleteMLMessage</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPresent</td>
+	<td>//span[contains(@class,'CheckBox')]/span/span</td>
+	<td>MLMessagePresent</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>!${MLMessagePresent}</td>
+	<td>endDeleteMLMessage</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//span[contains(@class,'CheckBox')]/span/span</td>
+	<td>Message</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[contains(@id,'more_actions')]/span/span</td>
+	<td>Actions</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//div[contains(@id,'more_actions')]/span/span</td>
+	<td>Actions</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//div[contains(@id,'DELETE_TOPICS')]</td>
+	<td>Delete</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[contains(@id,'DELETE_TOPICS')]</td>
+	<td>Delete</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[contains(@id,'DELETE_TOPICS')]</td>
+	<td>Delete</td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//div[@id='dialog_ok']</td>
+	<td>OK</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='dialog_ok']</td>
+	<td>OK</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='dialog_ok']</td>
+	<td>OK</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>goto</td>
+	<td>startDeleteMLMessage</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>endDeleteMLMessage</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>10000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>link=Sign out</td>
+	<td>Sign out</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>10000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>close</td>
+	<td>Google Groups</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>
