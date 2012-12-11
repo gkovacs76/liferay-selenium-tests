@@ -1,0 +1,791 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>DefineBlogScopeLimitedViewRoleTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">DefineBlogScopeLimitedViewRoleTest</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/web/guest/home/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//nav/ul/li/span/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>//nav/ul/li/span/a</td>
+	<td>guestCommunity</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Control Panel</td>
+	<td>Control Panel</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Roles</td>
+	<td>Roles</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Add</td>
+	<td>Add</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//input[@id='_128_name']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id='_128_name']</td>
+	<td>Test Scope Limited Blogs Entry View Role</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id='_128_title_en_US']</td>
+	<td>Test Scope Limited Blogs Entry View Role Title</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//textarea[@id='_128_description']</td>
+	<td>This is the description of the Test Scope Limited Blogs Entry View Role.</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//select[@id='_128_type']</td>
+	<td>Regular</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Save']</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td>Your request processed successfully.</td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>link=Roles</td>
+	<td>Roles</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//input[@id='_128_keywords']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id='_128_keywords']</td>
+	<td>&quot;Test Scope Limited Blogs Entry View Role&quot;</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Search']</td>
+	<td>Search</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//tr[td/a[contains(text(), 'Test Scope Limited Blogs Entry View Role Title')]]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//tr[td/a[contains(text(), 'Test Scope Limited Blogs Entry View Role Title')]]//*/span[contains(@title, 'Actions')]/ul/li/strong/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//tr[td/a[contains(text(), 'Test Scope Limited Blogs Entry View Role Title')]]//*/span[contains(@title, 'Actions')]/ul/li/strong/a</td>
+	<td>Actions</td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//div[@class='lfr-component lfr-menu-list']/ul/li[3]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@class='lfr-component lfr-menu-list']/ul/li[3]/a</td>
+	<td>Define Permissions</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//div[@class='lfr-component lfr-menu-list']/ul/li[3]/a</td>
+	<td>Define Permissions</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//select[@id='_128_add-permissions']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>typeKeys</td>
+	<td>//select[@id='_128_add-permissions']</td>
+	<td>b</td>
+</tr>
+<tr>
+	<td>keyPressAndWait</td>
+	<td>//select[@id='_128_add-permissions']</td>
+	<td>\13</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//form/h3[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form/h3[2]</td>
+	<td>Blogs Entry</td>
+</tr>
+<tr>
+	<td>storeChecked</td>
+	<td>//input[contains(@value, 'BlogsEntryVIEW')]</td>
+	<td>viewChecked1</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${viewChecked1}</td>
+	<td>viewChecked1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[contains(@value, 'BlogsEntryVIEW')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>viewChecked1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>//input[contains(@value, 'BlogsEntryVIEW')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPresent</td>
+	<td>//tr[td[1]/input[contains(@value, 'BlogsEntryVIEW')]]//*/span[@class='permission-scope']</td>
+	<td>limitationPresent1</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${limitationPresent1}</td>
+	<td>limitationPresent1</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//tr[td[1]/input[contains(@value, 'BlogsEntryVIEW')]]//*/span[text()='Limit Scope']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPopUp</td>
+	<td></td>
+	<td>30000</td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>Roles</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id='_128_name']</td>
+	<td>${guestCommunity}</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Search']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//tr[3]/td[1]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]/td[1]/a</td>
+	<td>${guestCommunity}</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]/td[2]/a</td>
+	<td>Open</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//tr[3]/td[1]/a</td>
+	<td>${guestCommunity}</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertPartialText</td>
+	<td>//tr[td[1]/input[contains(@value, 'BlogsEntryVIEW')]]//*/span[@class='permission-scope']</td>
+	<td>${guestCommunity}</td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>limitationPresent1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Save']</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td>The role permissions were updated.</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//select[@id='_128_add-permissions']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>typeKeys</td>
+	<td>//select[@id='_128_add-permissions']</td>
+	<td>bbb</td>
+</tr>
+<tr>
+	<td>keyPressAndWait</td>
+	<td>//select[@id='_128_add-permissions']</td>
+	<td>\13</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//form/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form/h3</td>
+	<td>Blogs</td>
+</tr>
+<tr>
+	<td>storeChecked</td>
+	<td>//input[contains(@value, 'VIEW')]</td>
+	<td>viewChecked2</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${viewChecked2}</td>
+	<td>viewChecked2</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[contains(@value, 'VIEW')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>viewChecked2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>//input[contains(@value, 'VIEW')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPresent</td>
+	<td>//tr[td[1]/input[contains(@value, 'VIEW')]]//*/span[@class='permission-scope']</td>
+	<td>limitationPresent2</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${limitationPresent2}</td>
+	<td>limitationPresent2</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//tr[td[1]/input[contains(@value, 'VIEW')]]//*/span[text()='Limit Scope']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPopUp</td>
+	<td></td>
+	<td>30000</td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>Roles</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id='_128_name']</td>
+	<td>${guestCommunity}</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Search']</td>
+	<td>Search</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//tr[3]/td[1]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]/td[1]/a</td>
+	<td>${guestCommunity}</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]/td[2]/a</td>
+	<td>Open</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//tr[3]/td[1]/a</td>
+	<td>${guestCommunity}</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertPartialText</td>
+	<td>//tr[td[1]/input[contains(@value, 'VIEW')]]//*/span[@class='permission-scope']</td>
+	<td>${guestCommunity}</td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>limitationPresent2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Save']</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td>The role permissions were updated.</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//select[@id='_128_add-permissions']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>typeKeys</td>
+	<td>//select[@id='_128_add-permissions']</td>
+	<td>bbbb</td>
+</tr>
+<tr>
+	<td>keyPressAndWait</td>
+	<td>//select[@id='_128_add-permissions']</td>
+	<td>\13</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//form/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form/h3</td>
+	<td>Blogs Aggregator</td>
+</tr>
+<tr>
+	<td>storeChecked</td>
+	<td>//input[contains(@value, 'VIEW')]</td>
+	<td>viewChecked3</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${viewChecked3}</td>
+	<td>viewChecked3</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[contains(@value, 'VIEW')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>viewChecked3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>//input[contains(@value, 'VIEW')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPresent</td>
+	<td>//tr[td[1]/input[contains(@value, 'VIEW')]]//*/span[@class='permission-scope']</td>
+	<td>limitationPresent3</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${limitationPresent3}</td>
+	<td>limitationPresent3</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//tr[td[1]/input[contains(@value, 'VIEW')]]//*/span[text()='Limit Scope']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPopUp</td>
+	<td></td>
+	<td>30000</td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>Roles</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id='_128_name']</td>
+	<td>${guestCommunity}</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Search']</td>
+	<td>Search</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//tr[3]/td[1]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]/td[1]/a</td>
+	<td>${guestCommunity}</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]/td[2]/a</td>
+	<td>Open</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//tr[3]/td[1]/a</td>
+	<td>${guestCommunity}</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertPartialText</td>
+	<td>//tr[td[1]/input[contains(@value, 'VIEW')]]//*/span[@class='permission-scope']</td>
+	<td>${guestCommunity}</td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>limitationPresent3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Save']</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td>The role permissions were updated.</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//select[@id='_128_add-permissions']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>typeKeys</td>
+	<td>//select[@id='_128_add-permissions']</td>
+	<td>bbbbbbb</td>
+</tr>
+<tr>
+	<td>keyPressAndWait</td>
+	<td>//select[@id='_128_add-permissions']</td>
+	<td>\13</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//form/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form/h3</td>
+	<td>Blogs</td>
+</tr>
+<tr>
+	<td>storeChecked</td>
+	<td>//input[contains(@value, 'VIEW')]</td>
+	<td>viewChecked4</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${viewChecked4}</td>
+	<td>viewChecked4</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[contains(@value, 'VIEW')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>viewChecked4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>//input[contains(@value, 'VIEW')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPresent</td>
+	<td>//tr[td[1]/input[contains(@value, 'VIEW')]]//*/span[@class='permission-scope']</td>
+	<td>limitationPresent4</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${limitationPresent4}</td>
+	<td>limitationPresent4</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//tr[td[1]/input[contains(@value, 'VIEW')]]//*/span[text()='Limit Scope']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPopUp</td>
+	<td></td>
+	<td>30000</td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>Roles</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id='_128_name']</td>
+	<td>${guestCommunity}</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Search']</td>
+	<td>Search</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//tr[3]/td[1]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]/td[1]/a</td>
+	<td>${guestCommunity}</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]/td[2]/a</td>
+	<td>Open</td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//tr[3]/td[1]/a</td>
+	<td>${guestCommunity}</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>windowFocus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertPartialText</td>
+	<td>//tr[td[1]/input[contains(@value, 'VIEW')]]//*/span[@class='permission-scope']</td>
+	<td>${guestCommunity}</td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>limitationPresent4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtAndWait</td>
+	<td>//input[@value='Save']</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@class='portlet-msg-success']</td>
+	<td>The role permissions were updated.</td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -32,6 +32,12 @@
 		</java>
 	</target>
 
+	<target name="build-selenium-hunqa">
+		<antcall target="build-selenium">
+			<param name="minimize" value="com/liferay/portalweb/hunqa" />
+		</antcall>
+	</target>
+
 	<target name="clean-up-bundle">
 		<delete file="app.server.${user.name}.properties" />
 
