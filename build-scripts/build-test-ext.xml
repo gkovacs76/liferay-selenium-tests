@@ -1,0 +1,785 @@
+<?xml version="1.0"?>
+
+<project name="test-ext" basedir="." default="" xmlns:antelope="antlib:ise.antelope.tasks">
+	<import file="build-test.xml" />
+
+	<propertycopy name="app.server.bin.dir" from="app.server.${app.server.type}.bin.dir" silent="true" />
+	<propertycopy name="app.server.classes.global.dir" from="app.server.${app.server.type}.classes.global.dir" silent="true" />
+	<propertycopy name="app.server.classes.portal.dir" from="app.server.${app.server.type}.classes.portal.dir" silent="true" />
+	<propertycopy name="app.server.deploy.dir" from="app.server.${app.server.type}.deploy.dir" silent="true" />
+	<propertycopy name="app.server.dir" from="app.server.${app.server.type}.dir" silent="true" />
+	<propertycopy name="app.server.lib.global.dir" from="app.server.${app.server.type}.lib.global.dir" silent="true" />
+	<propertycopy name="app.server.lib.portal.dir" from="app.server.${app.server.type}.lib.portal.dir" silent="true" />
+	<propertycopy name="app.server.parent.dir" from="app.server.${app.server.type}.parent.dir" silent="true" />
+	<propertycopy name="app.server.portal.dir" from="app.server.${app.server.type}.portal.dir" silent="true" />
+	<propertycopy name="app.server.portal.autodeploy.dir" from="app.server.${app.server.type}.portal.autodeploy.dir" silent="true" />
+	<propertycopy name="app.server.temp.dir" from="app.server.${app.server.type}.temp.dir" silent="true" />
+	<propertycopy name="app.server.work.dir" from="app.server.${app.server.type}.work.dir" silent="true" />
+
+	<target name="build-selenium">
+		<delete dir="test-classes" />
+		<property name="selenium.testcase.basedir" value="portal-web/test" />
+
+		<java
+			classname="com.liferay.portal.tools.SeleneseToJavaBuilder"
+			classpathref="project.classpath"
+			fork="true"
+			maxmemory="256m"
+			newenvironment="true"
+		>
+			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+			<arg line="--basedir ${selenium.testcase.basedir} --minimize ${minimize} --reportDuplicates ${reportDuplicates}" />
+		</java>
+	</target>
+
+	<target name="clean-up-bundle">
+		<delete file="app.server.${user.name}.properties" />
+
+		<delete file="test.${user.name}.properties" />
+
+		<if>
+			<isset property="skip.delete-liferay-home" />
+			<then>
+				<delete failonerror="false" includeemptydirs="true" quiet="true">
+					<fileset
+						dir="${app.server.parent.dir}"
+						includes="**"
+						excludes="data/**"
+					/>
+				</delete>
+			</then>
+			<else>
+				<delete failonerror="false" includeemptydirs="true" quiet="true">
+					<fileset
+						dir="${app.server.parent.dir}"
+						includes="**"
+					/>
+				</delete>
+			</else>
+		</if>
+
+		<delete dir="${user.home}/liferay" />
+
+		<delete failonerror="false" includeemptydirs="true" quiet="true">
+			<fileset dir="${java.io.tmpdir}" includes="**/*" />
+			<fileset dir="${env.TMP}" includes="**/*" />
+		</delete>
+	</target>
+
+	<target name="clean-up-source">
+		<delete dir="portal-impl/test-classes" />
+		<delete dir="portal-impl/test-results" />
+
+		<delete dir="portal-web/test-classes" />
+		<delete dir="portal-web/test-results" />
+	</target>
+
+	<target name="copy-license">
+		<copy todir="${app.server.portal.autodeploy.dir}" overwrite="true">
+			<fileset
+				dir="${license.dependency.dir}"
+				includes="*license*.xml"
+			/>
+		</copy>
+	</target>
+
+	<target name="copy-optional-jars">
+		<if>
+			<equals arg1="${db.type}" arg2="db2" />
+			<then>
+				<delete includeemptydirs="true" failonerror="false">
+					<fileset
+						dir="${app.server.lib.global.dir}"
+						includes="db2*.jar"
+					/>
+				</delete>
+
+				<copy todir="${app.server.lib.global.dir}">
+						<fileset
+							dir="${jdbc.drivers.optional.dir}/db2/8.1.18"
+							includes="*.jar"
+					/>
+				</copy>
+			</then>
+			<elseif>
+				<and>
+					<equals arg1="${db.type}" arg2="mysql" />
+					<not>
+						<available file="${app.server.lib.global.dir}/mysql.jar" />
+					</not>
+				</and>
+				<then>
+					<copy todir="${app.server.lib.global.dir}">
+						<fileset
+							dir="${jdbc.drivers.optional.dir}/mysql/5.0.7"
+							includes="*.jar"
+						/>
+					</copy>
+				</then>
+			</elseif>
+			<elseif>
+				<equals arg1="${db.type}" arg2="oracle-10" />
+				<then>
+					<delete includeemptydirs="true" failonerror="false">
+						<fileset
+							dir="${app.server.lib.global.dir}"
+							includes="ojdbc*.jar"
+						/>
+					</delete>
+
+					<copy todir="${app.server.lib.global.dir}">
+						<fileset
+							dir="${jdbc.drivers.optional.dir}/oracle/10.2.0.1.0"
+							includes="*.jar"
+						/>
+					</copy>
+				</then>
+			</elseif>
+			<elseif>
+				<equals arg1="${db.type}" arg2="oracle-11" />
+				<then>
+					<delete includeemptydirs="true" failonerror="false">
+						<fileset
+							dir="${app.server.lib.global.dir}"
+							includes="ojdbc*.jar"
+						/>
+					</delete>
+
+					<copy todir="${app.server.lib.global.dir}">
+						<fileset
+							dir="${jdbc.drivers.optional.dir}/oracle/11.2.0.1.0"
+							includes="*.jar"
+						/>
+					</copy>
+				</then>
+			</elseif>
+		</if>
+	</target>
+
+	<target name="deploy-built-plugins">
+		<if>
+			<and>
+				<isset property="plugins.dir" />
+				<available file="${plugins.dir}" type="dir" />
+			</and>
+			<then>
+				<resourcecount property="deploy.plugins.count">
+					<fileset dir="${plugins.dir}" includes="*.war" />
+				</resourcecount>
+			</then>
+		</if>
+
+		<if>
+			<not>
+				<equals arg1="${deploy.plugins.count}" arg2="0" />
+			</not>
+			<then>
+				<copy todir="${app.server.portal.autodeploy.dir}" overwrite="true">
+					<fileset
+						dir="${plugins.dir}"
+						includes="*.war"
+					/>
+				</copy>
+
+				<if>
+					<equals arg1="${app.server.type}" arg2="tomcat" />
+					<then>
+						<ant antfile="build-test-tomcat-ext.xml" target="deploy-wars" />
+					</then>
+					<elseif>
+						<equals arg1="${app.server.type}" arg2="websphere" />
+						<then>
+							<ant antfile="build-test-websphere-7.0-ext.xml" target="deploy-wars">
+								<property name="install.websphere.plugins" value="true" />
+							</ant>
+
+							<antcall target="update-patching-tool-property" />
+						</then>
+					</elseif>
+				</if>
+			</then>
+		</if>
+	</target>
+
+	<target name="deploy-patches">
+		<copy todir="${app.server.autodeploy.dir}" overwrite="true">
+			<fileset
+				dir="${patches.dir}"
+				includes="*.war"
+			/>
+		</copy>
+
+		<copy todir="${app.server.lib.global.dir}" overwrite="true">
+			<fileset
+				dir="${patches.dir}"
+				includes="*service*.jar"
+			/>
+		</copy>
+
+		<copy todir="${app.server.lib.portal.dir}/.." overwrite="true">
+			<fileset
+				dir="${patches.dir}"
+				includes="*.xml"
+				excludes="*license*,repository.xml"
+			/>
+		</copy>
+		<copy todir="${app.server.lib.portal.dir}/../tld" overwrite="true">
+			<fileset
+				dir="${patches.dir}"
+				includes="*.tld"
+			/>
+		</copy>
+		<copy todir="${app.server.lib.portal.dir}" overwrite="true">
+			<fileset
+				dir="${patches.dir}"
+				includes="*.jar"
+				excludes="*service*"
+			/>
+		</copy>
+
+<!--		<copy todir="${app.server.data.dir}/jackrabbit" overwrite="true">
+			<fileset
+				dir="${patches.dir}"
+				includes="repository.xml"
+			/>
+		</copy>
+-->
+
+		<property name="patching.tool.dir" value="${app.server.parent.dir}/patching-tool"/>
+		<copy todir="${patching.tool.dir}/patches" overwrite="true">
+			<fileset
+				dir="${patches.dir}"
+				includes="*fix*.zip"
+			/>
+		</copy>
+
+		<if>
+			<and>
+				<isset property="patches.dir" />
+				<available file="${patches.dir}" type="dir" />
+			</and>
+			<then>
+				<resourcecount property="deploy.traditional.patches.count">
+					<fileset dir="${patches.dir}" includes="*.war,*.jar" />
+				</resourcecount>
+				<resourcecount property="deploy.patching-tool.patches.count">
+					<fileset dir="${patches.dir}" includes="*fix*.zip" />
+				</resourcecount>
+			</then>
+		</if>
+
+		<if>
+			<not>
+				<equals arg1="${deploy.traditional.patches.count}" arg2="0" />
+			</not>
+			<then>
+				<if>
+					<equals arg1="${app.server.type}" arg2="tomcat" />
+					<then>
+						<ant antfile="build-test-tomcat-ext.xml" target="deploy-wars" />
+					</then>
+					<elseif>
+						<equals arg1="${app.server.type}" arg2="websphere" />
+						<then>
+							<ant antfile="build-test-websphere-7.0-ext.xml" target="deploy-wars" />
+						</then>
+					</elseif>
+				</if>
+			</then>
+		</if>
+
+		<if>
+			<not>
+				<equals arg1="${deploy.patching-tool.patches.count}" arg2="0" />
+			</not>
+			<then>
+				<antcall target="install-patching-tool-patches" />
+			</then>
+		</if>
+	</target>
+
+	<target name="deploy-patching-tool">
+		<if>
+			<and>
+				<isset property="patching.tool.zip.file" />
+				<available file="${patching.tool.zip.file}" type="file" />
+			</and>
+			<then>
+				<unzip src="${patching.tool.zip.file}" dest="${app.server.parent.dir}" />
+
+				<exec dir="${app.server.parent.dir}/patching-tool" executable="patching-tool${file.suffix.bat}" resolveexecutable="true">
+					<arg line="auto-discovery" />
+				</exec>
+			</then>
+			<else>
+				<fail>.
+
+Patching tool does not exist on the following path: ${patching.tool.zip.file}.
+				</fail>
+			</else>
+		</if>
+	</target>
+
+	<target name="install-patching-tool-patches">
+		<property name="patching.tool.dir" value="${app.server.parent.dir}/patching-tool"/>
+
+		<if>
+			<not>
+				<available file="${patching.tool.dir}" type="file" />
+			</not>
+			<then>
+				<exec dir="${app.server.parent.dir}/patching-tool" executable="patching-tool${file.suffix.bat}" resolveexecutable="true">
+					<arg line="auto-discovery" />
+				</exec>
+			</then>
+		</if>
+
+		<exec dir="${patching.tool.dir}" executable="patching-tool${file.suffix.bat}" resolveexecutable="true">
+			<arg line="info" />
+		</exec>
+
+		<exec dir="${patching.tool.dir}" executable="patching-tool${file.suffix.bat}" resolveexecutable="true">
+			<arg line="install" />
+		</exec>
+
+		<exec dir="${patching.tool.dir}" executable="patching-tool${file.suffix.bat}" resolveexecutable="true">
+			<arg line="info" />
+		</exec>
+	</target>
+
+	<target name="prepare-selenium">
+		<antcall target="prepare-test-properties" />
+
+		<if>
+			<not>
+				<isset property="selenium.executable.zip" />
+			</not>
+			<then>
+				<fail>.
+
+Please set "selenium.executable.zip" in test.properties to point to the Selenium
+executable ZIP file.
+				</fail>
+			</then>
+		</if>
+
+		<if>
+			<or>
+				<not>
+					<available file="${selenium.nanny.executable}" />
+				</not>
+				<uptodate
+					srcfile="${selenium.nanny.executable}"
+					targetfile="${selenium.executable.zip}"
+				/>
+			</or>
+			<then>
+				<delete>
+					<fileset
+						dir="${project.dir}/tools/selenium"
+						includes="*.exe"
+					/>
+				</delete>
+
+				<unzip
+					dest="${project.dir}/tools/selenium"
+					src="${selenium.executable.zip}"
+				/>
+
+				<touch file="${selenium.nanny.executable}" />
+			</then>
+		</if>
+
+		<if>
+			<not>
+				<isset property="skip.rebuild-database"/>
+			</not>
+			<then>
+				<if>
+					<isset property="build.sharding.db" />
+					<then>
+						<ant antfile="build-test-db-sharding-ext.xml" target="rebuild-db-sharding" />
+					</then>
+					<else>
+						<antcall target="rebuild-database" inheritAll="false" />
+					</else>
+				</if>
+			</then>
+		</if>
+
+		<if>
+			<not>
+				<isset property="skip.delete-selenium-output" />
+			</not>
+			<then>
+				<delete dir="${selenium.output.dir}" />
+
+				<mkdir dir="${selenium.output.dir}" />
+			</then>
+		</if>
+	</target>
+
+	<target name="prepare-selenium-server">
+		<if>
+			<not>
+				<isset property="skip.prepare.test-cases" />
+			</not>
+			<then>
+				<antcall target="clean-up-source" />
+
+				<ant antfile="build.xml" target="compile" inheritAll="false" />
+
+				<ant dir="portal-impl" target="compile-test" inheritAll="false" />
+
+				<ant dir="portal-service" target="jar" inheritAll="false" />
+
+				<ant dir="portal-web" target="compile-test" inheritAll="false" />
+			</then>
+		</if>
+
+		<if>
+			<isset property="customer.test.dir.name" />
+			<then>
+				<if>
+					<contains string="${customer.test.dir.name}" substring=".." />
+					<then>
+						<fail>.
+
+Please don't use the '..' in the 'customer.test.dir.name' property.
+						</fail>
+					</then>
+				</if>
+				<if>
+					<not>
+						<available file="portal-web/test/com/liferay/portalweb/${customer.test.dir.name}" type="dir" />
+					</not>
+					<then>
+						<fail>.
+
+Please set the 'customer.test.dir.name' property and/or check the exists of 'portal-web/test/com/liferay/portalweb/${customer.test.dir.name}' folder.
+						</fail>
+					</then>
+				</if>
+			</then>
+		</if>
+
+		<if>
+			<not>
+				<available file="portal-service/portal-service.jar" />
+			</not>
+			<then>
+				<ant dir="portal-service" target="jar" inheritAll="false" />
+			</then>
+		</if>
+
+		<ant antfile="build-test.xml" target="prepare-common">
+			<property name="build.app.server" value="false" />
+			<property name="custom.properties" value="${custom.properties}" />
+			<property name="skip.prepare-bundle" value="true" />
+		</ant>
+
+		<replaceregexp
+			file="portal-impl/src/portal-ext.properties"
+			match="resource.repositories.root=(.*)"
+			replace="#resource.repositories.root=\1"
+		/>
+
+		<if>
+			<isset property="build.sharding.db" />
+			<then>
+				<ant antfile="build-test-db-sharding-ext.xml" target="prepare-db-sharding" />
+			</then>
+		</if>
+
+		<ant dir="portal-impl" target="deploy-properties" inheritAll="false" />
+
+		<antcall target="copy-optional-jars" />
+
+		<antcall target="deploy-patching-tool" />
+
+		<if>
+			<not>
+				<isset property="skip.rebuild-database"/>
+			</not>
+			<then>
+				<if>
+					<isset property="build.sharding.db" />
+					<then>
+						<ant antfile="build-test-db-sharding-ext.xml" target="rebuild-db-sharding" />
+					</then>
+					<else>
+						<antcall target="rebuild-database" inheritAll="false" />
+					</else>
+				</if>
+			</then>
+		</if>
+
+		<antcall target="deploy-built-plugins" />
+
+		<antcall target="deploy-patches" />
+
+		<antcall target="copy-license" />
+
+		<antcall target="prepare-server" />
+	</target>
+
+	<target name="prepare-server">
+		<echo file="C:\WINDOWS\system32\drivers\etc\hosts">
+127.0.0.1	localhost
+127.0.0.1	liferay-ead7385
+127.0.0.1	www.able.com
+127.0.0.1	www.baker.com
+127.0.0.1	www.charlie.com
+127.0.0.1	www.dog.com
+127.0.0.1	www.easy.com
+127.0.0.1	www.fox.com</echo>
+	</target>
+
+	<target name="prepare-test-properties">
+		<property name="portal.url" value="http://localhost:8080" />
+		<replaceregexp
+			file="portal-web/test/test-portal-web.properties"
+			match="portal.url=(.*)"
+			replace="portal.url=${portal.url}"
+		/>
+
+		<property name="test.browser" value="chrome" />
+		<replaceregexp
+			file="portal-web/test/test-portal-web.properties"
+			match="browser.type=(.*)"
+			replace="browser.type=*${test.browser}"
+		/>
+
+		<property name="selenium.output.dir" value="L:\\selenium-output\\" />
+		<propertyregex input="${selenium.output.dir}" override="true" property="selenium.output.dir" regexp="\\" replace="\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\" />
+		<replaceregexp
+			file="portal-web/test/test-portal-web.properties"
+			match="output.dir=(.*)"
+			replace="output.dir=${selenium.output.dir}"
+		/>
+
+		<if>
+			<or>
+				<equals arg1="${test.browser}" arg2="chrome" />
+				<equals arg1="${test.browser}" arg2="firefox" />
+			</or>
+			<then>
+				<replaceregexp
+					file="portal-web/test/test-portal-web.properties"
+					match="#selenium.executable.dir=(.*)"
+					replace="selenium.executable.dir=${basedir.unix}/tools/selenium/"
+				/>
+				<replaceregexp
+					file="portal-web/test/test-portal-web.properties"
+					match="#selenium.download.file.executable=(.*)"
+					replace="selenium.download.file.executable=selenium_download_file_ff.exe"
+				/>
+				<replaceregexp
+					file="portal-web/test/test-portal-web.properties"
+					match="#selenium.set.browser.option.executable=(.*)"
+					replace="selenium.set.browser.option.executable=selenium_set_browser_option_ff.exe"
+				/>
+			</then>
+			<elseif>
+				<or>
+					<equals arg1="${test.browser}" arg2="iehta" />
+					<equals arg1="${test.browser}" arg2="iexplorer" />
+					<equals arg1="${test.browser}" arg2="iexplorerproxy" />
+				</or>
+				<then>
+					<replaceregexp
+						file="portal-web/test/test-portal-web.properties"
+						match="#selenium.executable.dir=(.*)"
+						replace="selenium.executable.dir=${basedir.unix}/tools/selenium/"
+					/>
+					<replaceregexp
+						file="portal-web/test/test-portal-web.properties"
+						match="#selenium.download.file.executable=(.*)"
+						replace="selenium.download.file.executable=selenium_download_file_ie.exe"
+					/>
+				</then>
+			</elseif>
+		</if>
+	</target>
+
+	<target name="run-selenium-server">
+		<antcall target="prepare-selenium" />
+
+		<parallel>
+			<exec dir="${app.server.bin.dir}" executable="${simple.server.start.executable}" resolveexecutable="true">
+				<arg line="${simple.server.start.executable.arg.line}" />
+			</exec>
+
+			<sequential>
+				<waitfor>
+					<http url="${portal.url}" />
+				</waitfor>
+
+				<if>
+					<isset property="customer.test.dir"/>
+					<then>
+						<ant antfile="build-test-plans.xml" target="run-selenium-test-plans" inheritall="true" />
+					</then>
+
+					<elseif>
+						<isset property="run-test-infinitely" />
+						<then>
+							<ant antfile="build-test-plans.xml" target="run-selenium-infinitely" inheritAll="true" />
+						</then>
+					</elseif>
+
+					<else>
+						<antcall target="start-ext-selenium" />
+
+						<if>
+							<equals arg1="${test.ant.script.actions}" arg2="db-failover" />
+							<then>
+								<ant antfile="build-test-db-failover.xml" target="run-db-failover" />
+							</then>
+						</if>
+
+						<ant antfile="build-test.xml" target="run-selenium-test">
+							<property name="test.class" value="${test.name}" />
+						</ant>
+
+						<antcall target="stop-ext-selenium" />
+					</else>
+				</if>
+
+				<exec dir="${app.server.bin.dir}" executable="${simple.server.stop.executable}" resolveexecutable="true">
+					<arg line="${simple.server.stop.executable.arg.line}" />
+				</exec>
+			</sequential>
+		</parallel>
+	</target>
+
+	<target name="send-test-results">
+		<mail
+			messagemimetype="text/html"
+			encoding="auto"
+			mailhost="smtp.gmail.com"
+			mailport="465"
+			ssl="true"
+			subject="Test result from ${LPP}."
+			user="liferaytesthu@gmail.com"
+			password="testliferaytest"
+		>
+			<from address="liferaytesthu@gmail.com"/>
+			<to address="tibor.kovacs@liferay.com"/>
+			<message>The ${testplan.name} finished the testing on ${LPP} at ${QA} environment.</message>
+			<attachments>
+				<fileset dir="portal-web/test-results">
+					<include name="*.xml"/>
+				</fileset>
+			</attachments>
+		</mail>
+	</target>
+
+	<target name="start-ext-selenium">
+		<ant antfile="build-test.xml" target="start-selenium" />
+
+		<if>
+			<or>
+				<equals arg1="${test.browser}" arg2="iehta" />
+				<equals arg1="${test.browser}" arg2="iexplore" />
+				<equals arg1="${test.browser}" arg2="iexploreproxy" />
+			</or>
+			<then>
+				<forget>
+					<exec executable="${project.dir}/tools/selenium/selenium_nanny.exe" />
+				</forget>
+			</then>
+		</if>
+	</target>
+
+	<target name="stop-ext-selenium">
+		<if>
+			<or>
+				<equals arg1="${test.browser}" arg2="iehta" />
+				<equals arg1="${test.browser}" arg2="iexplore" />
+				<equals arg1="${test.browser}" arg2="iexploreproxy" />
+			</or>
+			<then>
+				<ant antfile="build-test.xml" target="stop-selenium-nanny" />
+
+				<exec executable="taskkill.exe" resolveexecutable="true">
+					<arg line="/F /IM selenium_download_file_ie.exe" />
+				</exec>
+			</then>
+		</if>
+
+		<ant antfile="build-test.xml" target="stop-selenium" />
+
+		<exec executable="taskkill.exe" resolveexecutable="true">
+			<arg line="/F /IM selenium_download_file_ff.exe" />
+		</exec>
+	</target>
+
+	<target name="update-patching-tool-property">
+		<property name="patching.tool.default.properties" value ="${app.server.parent.dir}/patching-tool/default.properties" />
+
+		<delete file="${patching.tool.default.properties}" failonerror="false" />
+
+		<exec dir="${app.server.parent.dir}/patching-tool" executable="patching-tool${file.suffix.bat}" resolveexecutable="true">
+			<arg line="auto-discovery" />
+		</exec>
+
+		<echo file="${patching.tool.default.properties}" append="true">
+plugin.discovery.method=manual
+plugin.list=
+</echo>
+
+		<for param="plugin.war">
+			<fileset
+				dir="${plugins.includes}"
+				includes="*.war"
+			/>
+			<sequential>
+				<var name="plugin.name" unset="true" />
+				<basename file="@{plugin.war}" property="plugin.name" suffix=".war"/>
+				<propertyregex input="${plugin.name}" override="yes" property="plugin.name" regexp="-${lp.version}.*" replace="" />
+
+				<dirset
+					casesensitive="false"
+					id="plugin.path.id"
+					dir="${app.server.deploy.dir}"
+					includes="*${plugin.name}*/*${plugin.name}*/web-inf,*${plugin.name}*/web-inf"
+				/>
+
+				<var name="plugin.path" unset="true"/>
+				<property name="plugin.path" refid="plugin.path.id" />
+
+				<if>
+					<not>
+						<equals arg1="${plugin.path}" arg2="" />
+					</not>
+					<then>
+						<replace
+							file="${patching.tool.default.properties}"
+							token="plugin.list="
+							value="plugin.list=${plugin.name},"
+						/>
+
+						<propertyregex casesensitive="fasle" input="${plugin.path}" override="true" property="plugin.path" regexp="web-inf" replace=""/>
+
+						<var name="unix.plugin.path" unset="true" />
+						<pathconvert targetos="unix" property="unix.plugin.path">
+							<map from="${basedir}/" to=""/>
+							<path path="${plugin.path}" />
+						</pathconvert>
+
+						<var name="unix.plugin.full.path" unset="true" />
+						<property name="unix.plugin.full.path" value="${app.server.deploy.dir}/${unix.plugin.path}" />
+						<propertyregex input="${unix.plugin.full.path}" override="true" property="unix.plugin.full.path" regexp="//" replace="/" />
+
+						<propertyregex input="${plugin.name}" override="yes" property="plugin.list.name" regexp="-" replace="." />
+
+						<echo file="${patching.tool.default.properties}" append="true" >
+plugin.${plugin.list.name}.path=${unix.plugin.full.path}</echo>
+					</then>
+				</if>
+			</sequential>
+		</for>
+	</target>
+
+</project>

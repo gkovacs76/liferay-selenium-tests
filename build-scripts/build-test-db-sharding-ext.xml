@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+
+<project name="test-db-shardnig" basedir="." default="test" xmlns:antelope="antlib:ise.antelope.tasks">
+	<import file="build-test-ext.xml" />
+
+	<target name="prepare-db-mysql-sharding">
+		<replaceregexp
+			file="portal-impl/src/portal-ext.properties"
+			match="jdbc.one.password=(.*)"
+			replace="jdbc.one.password=${db.mysql.password}"
+		/>
+		<replaceregexp
+			file="portal-impl/src/portal-ext.properties"
+			flags="s"
+			match="jdbc.one.url=(.*?)lportal(.*)"
+			replace="jdbc.one.url=\1${db.mysql.schema}\2"
+		/>
+		<replaceregexp
+			file="portal-impl/src/portal-ext.properties"
+			match="jdbc.one.username=(.*)"
+			replace="jdbc.one.username=${db.mysql.username}"
+		/>
+
+		<replaceregexp
+			file="portal-impl/src/portal-ext.properties"
+			match="jdbc.two.password=(.*)"
+			replace="jdbc.two.password=${db.mysql.password}"
+		/>
+		<replaceregexp
+			file="portal-impl/src/portal-ext.properties"
+			flags="s"
+			match="jdbc.two.url=(.*?)lportal(.*)"
+			replace="jdbc.two.url=\1${db.mysql.schema}\2"
+		/>
+		<replaceregexp
+			file="portal-impl/src/portal-ext.properties"
+			match="jdbc.two.username=(.*)"
+			replace="jdbc.two.username=${db.mysql.username}"
+		/>
+	</target>
+
+	<target name="prepare-db-sharding">
+		<ant antfile="build-test-db-sharding.xml" target="prepare-sharding-properties" />
+
+		<if>
+			<!--
+			<equals arg1="${db.type}" arg2="db2" />
+			<then>
+				<antcall target="rebuild-database-db2" />
+			</then>
+			<elseif>
+				<equals arg1="${db.type}" arg2="hsql" />
+				<then>
+					<antcall target="rebuild-database-hsql" />
+				</then>
+			</elseif>
+			<elseif>
+			-->
+				<equals arg1="${db.type}" arg2="mysql" />
+				<then>
+					<antcall target="prepare-db-mysql-sharding" />
+				</then>
+			<!--
+			</elseif>
+			<elseif>
+				<or>
+					<equals arg1="${db.type}" arg2="oracle-10" />
+					<equals arg1="${db.type}" arg2="oracle-11" />
+				</or>
+				<then>
+					<antcall target="rebuild-database-oracle" />
+				</then>
+			</elseif>
+			<elseif>
+				<or>
+					<equals arg1="${db.type}" arg2="postgresql-8.4" />
+					<equals arg1="${db.type}" arg2="postgresql-9.0" />
+				</or>
+				<then>
+					<antcall target="rebuild-database-postgresql" />
+				</then>
+			</elseif>
+			<elseif>
+				<or>
+					<equals arg1="${db.type}" arg2="sql-server-2005" />
+					<equals arg1="${db.type}" arg2="sql-server-2008" />
+				</or>
+				<then>
+					<antcall target="rebuild-database-sql-server" />
+				</then>
+			</elseif>
+			<elseif>
+				<equals arg1="${db.type}" arg2="sybase" />
+				<then>
+					<antcall target="rebuild-database-sybase" />
+				</then>
+			</elseif>
+			-->
+		</if>
+	</target>
+
+	<target name="rebuild-db-sharding">
+		<if>
+			<not>
+				<isset property="skip.rebuild-database" />
+			</not>
+			<then>
+				<if>
+					<not>
+						<isset property="skip.delete-liferay-home" />
+					</not>
+					<then>
+						<delete dir="${user.home}/liferay" />
+					</then>
+				</if>
+
+				<antcall target="rebuild-database" inheritAll="false">
+					<param name="db.schema" value="${db.schema}"/>
+					<param name="sql.file" value="${sql.minimal.file}" />
+					<param name="sql.dir" value="${sql.minimal.dir}" />
+					<param name="test.database.minimal" value="true" />
+				</antcall>
+
+				<antcall target="rebuild-database" inheritAll="false">
+					<param name="db.schema" value="${db.schema}1"/>
+					<param name="sql.file" value="${sql.minimal.file}" />
+					<param name="sql.dir" value="${sql.minimal.dir}" />
+					<param name="test.database.minimal" value="true" />
+				</antcall>
+
+				<antcall target="rebuild-database" inheritAll="false">
+					<param name="db.schema" value="${db.schema}2"/>
+					<param name="sql.file" value="${sql.minimal.file}" />
+					<param name="sql.dir" value="${sql.minimal.dir}" />
+					<param name="test.database.minimal" value="true" />
+				</antcall>
+			</then>
+		</if>
+	</target>
+
+</project>

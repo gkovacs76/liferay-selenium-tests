@@ -3,6 +3,8 @@
 <project name="portal-test-db-upgrade-6.0.12" basedir="../../." default="test-tomcat-mysql-firefox" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="../../build-test-ext.xml" />
 
+	<property name="testplan.name" value="DBUpgradeDocumentLibrary6012TestSuite" />
+
 	<target name="test-tomcat-mysql-firefox">
 		<antcall target="test-tomcat-mysql" />
 	</target>
@@ -46,5 +48,7 @@
 			<property name="upgrade.to-test.name" value="DBUpgradeDocumentLibrary6012LatestTestSuite" />
 		</ant>
 
+
+		<antcall target="send-test-results" />
 	</target>
 </project>

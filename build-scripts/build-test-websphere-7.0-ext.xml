@@ -1,0 +1,267 @@
+<?xml version="1.0"?>
+
+<project name="test-websphere-7.0-ext" basedir="." default="" xmlns:antelope="antlib:ise.antelope.tasks">
+	<import file="build-test-ext.xml" />
+
+	<target name="deploy-wars">
+		<exec dir="${app.server.websphere.bin.dir}" executable="startServer${file.suffix.bat}" resolveexecutable="true">
+			<arg line="server1" />
+		</exec>
+
+		<echo message="Wait for 60 secunds to deploy wars..." />
+		<sleep seconds="60" />
+
+		<echo file="wsadmin-wars.py">print AdminApp.list()</echo>
+
+		<for param="deployed.war">
+			<fileset
+				dir="${app.server.websphere.portal.autodeploy.destination.dir}"
+				includes="*.war"
+			/>
+			<sequential>
+				<var name="deployed.war.unix" unset="true" />
+				<pathconvert targetos="unix" property="deployed.war.unix">
+					<path path="@{deployed.war}" />
+				</pathconvert>
+
+				<var name="war.name" unset="true"/>
+				<basename property="war.name" file="${deployed.war.unix}" suffix=".war"/>
+
+				<var name="regexp.war.name" unset="true" />
+				<property name="regexp.war.name" value="${war.name}" />
+				<propertyregex input="${regexp.war.name}" override="yes" property="regexp.war.name" regexp="\." replace="_" />
+
+				<if>
+					<isset property="install.websphere.plugins" />
+					<then>
+						<echo file="wsadmin-wars.py" append="true">
+print AdminApp.install('${deployed.war.unix}', '[-appname ${regexp.war.name} -contextroot /${regexp.war.name} -deployws -MapWebModToVH [[.* ${war.name}.war,WEB-INF/web.xml default_host]]]')
+
+print AdminConfig.save()
+
+print AdminApp.list()</echo>
+					</then>
+					<else>
+						<echo file="wsadmin-wars.py" append="true">
+
+print AdminApp.update('liferay-portal','modulefile','[-operation addupdate -contents ${deployed.war.unix} -contextroot /${regexp.war.name} -contenturi ${regexp.war.name} -usedefaultbindings]')
+
+print AdminConfig.save()</echo>
+					</else>
+				</if>
+			</sequential>
+		</for>
+
+		<move todir="c:/" overwrite="true">
+			<fileset dir="."
+				includes="wsadmin-wars.py"
+			/>
+		</move>
+
+		<exec dir="${app.server.websphere.bin.dir}" executable="wsadmin${file.suffix.bat}" resolveexecutable="true">
+			<arg line="-f c:\wsadmin-wars.py" />
+		</exec>
+
+		<delete file="c:\wsadmin-wars.py" />
+
+		<delete>
+			<fileset
+				dir="${app.server.websphere.portal.autodeploy.destination.dir}"
+				includes="*.war"
+			/>
+		</delete>
+
+		<exec dir="${app.server.websphere.bin.dir}" executable="stopServer${file.suffix.bat}" resolveexecutable="true">
+			<arg line="server1" />
+		</exec>
+	</target>
+
+	<target name="prepare-selenium-websphere">
+		<antcall target="prepare-websphere-7.0-profile" />
+
+		<if>
+			<isset property="prepare.portal.from.bundle" />
+			<then>
+				<if>
+					<not>
+						<available file="${war.bundle.file}" type="file" />
+					</not>
+					<then>
+						<fail>.
+The ${war.bundle.file} file is not exist, or the 'war.bundle.file' proerty is not set.
+						</fail>
+					</then>
+				</if>
+
+				<if>
+					<not>
+						<available file="${zipped.bundle.dependencies.file}" type="file" />
+					</not>
+					<then>
+						<fail>.
+The ${zipped.bundle.dependencies.file} file is not exist, or the 'zipped.bundle.dependencies.file' proerty is not set.
+						</fail>
+					</then>
+				</if>
+			</then>
+			<else>
+				<antcall target="prepare-common">
+					<param name="custom.properties" value="${custom.properties}" />
+				</antcall>
+
+				<!-- build the portal.war -->
+				<ant antfile="build-dist.xml" target="zip-portal-war-2.4" />
+
+				<var name="war.bundle.file.unix" unset="true" />
+				<property name="war.bundle.file.unix" value="${basedir}/dist/liferay-portal-${lp.version}.war" />
+
+				<!-- build the portal's dependencies -->
+				<ant antfile="build-dist.xml" target="zip-portal-dependencies" />
+
+				<var name="zipped.bundle.dependencies.file" unset="true" />
+				<property name="zipped.bundle.dependencies.file" value="dist/liferay-portal-dependencies-${lp.version}.zip" />
+
+				<!-- build the tunnel-web.war -->
+				<ant dir="tunnel-web" target="war" inheritAll="false" />
+
+				<var name="tunnel-web.file" unset="true" />
+				<property name="tunnel-web.file" value="${basedir}/tunnel-web/tunnel-web.war" />
+
+			</else>
+		</if>
+
+		<var name="tunnel-web.file.unix" unset="true" />
+		<pathconvert targetos="unix" property="tunnel-web.file.unix">
+			<path path="${tunnel-web.file}" />
+		</pathconvert>
+
+		<var name="war.bundle.file.unix" unset="true" />
+		<pathconvert targetos="unix" property="war.bundle.file.unix">
+			<path path="${war.bundle.file}" />
+		</pathconvert>
+
+		<unzip src="zipped.bundle.dependencies.file" dest="${app.server.websphere.lib.global.dir}">
+			<mapper type="flatten" />
+		</unzip>
+
+		<replace file="${app.server.websphere.dir}/config/cells/${app.server.websphere.cell.name}/nodes/${app.server.websphere.node.name}/servers/server1/server.xml">
+			<replacefilter
+				token="genericJvmArguments=&quot;&quot;"
+				value="genericJvmArguments=&quot;-Duser.timezone=GMT -Dfile.encoding=UTF8 -Xk22000 -Xp64k,16k&quot;"
+			/>
+
+			<replacefilter
+				token="verboseModeGarbageCollection=&quot;false&quot;"
+				value="verboseModeGarbageCollection=&quot;true&quot;"
+			/>
+
+			<replacefilter
+				token="verboseModeJNI=&quot;false&quot;"
+				value="verboseModeJNI=&quot;false&quot; initialHeapSize=&quot;256&quot; maximumHeapSize=&quot;1024&quot;"
+			/>
+
+			<replacefilter
+				token="xmi:id=&quot;DynamicCache_1183122130078&quot; enable=&quot;true&quot;"
+				value="xmi:id=&quot;DynamicCache_1183122130078&quot; enable=&quot;true&quot; defaultPriority=&quot;3&quot; hashSize=&quot;0&quot; cacheSize=&quot;3000&quot;"
+			/>
+		</replace>
+
+		<exec dir="${app.server.websphere.bin.dir}" executable="startServer${file.suffix.bat}" resolveexecutable="true">
+			<arg line="server1" />
+		</exec>
+
+		<echo file="wsadmin.py">print AdminApp.list()
+
+print AdminApp.uninstall('DefaultApplication')
+
+print AdminConfig.save()
+
+print AdminApp.install('${war.bundle.file.unix}', '[-appname liferay-portal -contextroot /]')
+
+print AdminConfig.save()
+
+print AdminApp.list()
+
+print AdminApp.install('${tunnel-web.file.unix}', '[-appname liferay-tunnel-web -contextroot /tunnel-web]')
+
+print AdminConfig.save()
+
+print AdminApp.list()
+
+appManager = AdminControl.queryNames('type=ApplicationManager,process=server1,*')
+
+print appManager
+
+print AdminControl.invoke(appManager, 'startApplication', 'liferay-portal')
+print AdminControl.invoke(appManager, 'startApplication', 'liferay-tunnel-web')</echo>
+
+		<move todir="c:/" overwrite="true">
+			<fileset
+				dir="."
+				includes="wsadmin.py"
+			/>
+		</move>
+
+		<exec dir="${app.server.websphere.bin.dir}" executable="wsadmin${file.suffix.bat}" resolveexecutable="true">
+			<arg line="-f c:\wsadmin.py" />
+		</exec>
+
+		<exec dir="${app.server.websphere.bin.dir}" executable="stopServer${file.suffix.bat}" resolveexecutable="true">
+			<arg line="server1" />
+		</exec>
+
+		<mkdir dir="${app.server.websphere.portal.autodeploy.dir}" />
+
+		<echo file="app.server.${user.name}.properties">app.server.type=websphere</echo>
+
+		<property name="portal.url" value="http://localhost:9080" />
+
+		<propery name="tmp.custom.properties" value="
+${line.separator}${custom.properties}
+${line.separator}
+${line.separator}##
+${line.separator}## Websphere special properties
+${line.separator}##
+${line.separator}
+${line.separator}liferay.home=_liferayHome
+${line.separator}
+${line.separator}auto.deploy.dest.dir=_liferayHome
+${line.separator}
+${line.separator}resource.repositories.root=$${liferay.home}
+${line.separator}
+${line.separator}###############################
+${line.separator}" />
+
+		<var name="custom.properties" unset="true" />
+		<propertycopy name="custom.properties" from="tmp.custom.properties" silent="true" />
+
+		<antcall target="prepare-selenium-server" inheritAll="false">
+			<param name="skip.clean-server-deploy-dir" value="true" />
+		</antcall>
+	</target>
+
+	<target name="prepare-websphere-7.0-profile">
+		<exec dir="${app.server.websphere.application.bin.dir}" executable="manageprofiles${file.suffix.bat}" resolveexecutable="true">
+			<arg line="-delete -profileName ${app.server.websphere.profile.name}" />
+		</exec>
+
+		<antcall target="clean-up-bundle" />
+
+		<delete dir="${app.server.websphere.dir}" failonerror="false" quiet="true"/>
+
+		<exec dir="${app.server.websphere.application.bin.dir}" executable="manageprofiles${file.suffix.bat}" resolveexecutable="true">
+			<arg line="-create -profileName ${app.server.websphere.profile.name} -cellName ${app.server.websphere.cell.name} -nodeName ${app.server.websphere.node.name} -defaultPorts 9080 -isDefault -hostName localhost -startType manual" />
+		</exec>
+	</target>
+
+	<target name="run-selenium-websphere">
+		<antcall target="run-selenium-server" inheritAll="false">
+			<param name="simple.server.start.executable" value="startServer${file.suffix.bat}" />
+			<param name="simple.server.start.executable.arg.line" value="server1" />
+			<param name="simple.server.stop.executable" value="stopServer${file.suffix.bat}" />
+			<param name="simple.server.stop.executable.arg.line" value="server1" />
+			<param name="skip.clean-server-deploy-dir" value="true" />
+			<param name="test.class" value="${test.name}" />
+		</antcall>
+	</target>
+</project>

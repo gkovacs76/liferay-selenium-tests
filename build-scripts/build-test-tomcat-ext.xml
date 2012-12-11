@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+
+<project name="test-tomcat-ext" basedir="." default="" xmlns:antelope="antlib:ise.antelope.tasks">
+	<import file="build-test-ext.xml" />
+
+	<target name="deploy-wars">
+		<parallel>
+			<exec dir="${app.server.tomcat.bin.dir}" executable="catalina${file.suffix.bat}" resolveexecutable="true">
+				<arg line="run" />
+			</exec>
+
+			<sequential>
+				<waitfor>
+					<http url="http://${portal.url}" />
+				</waitfor>
+
+				<echo message="Wait for 60 secunds to deploy wars..." />
+				<sleep seconds="60" />
+
+				<exec dir="${app.server.tomcat.bin.dir}" executable="shutdown${file.suffix.bat}" resolveexecutable="true">
+				</exec>
+			</sequential>
+		</parallel>
+	</target>
+
+	<target name="prepare-selenium-tomcat">
+		<if>
+			<isset property="prepare.portal.from.bundle" />
+			<then>
+				<echo message="Delete files from: '${app.server.tomcat.parent.dir}' dir" />
+
+				<antcall target="clean-up-bundle" />
+
+				<unzip src="${zipped.bundle.file}" dest="${app.server.tomcat.parent.dir}">
+					<patternset>
+						<include name="liferay-portal*/tomcat*/"/>
+					</patternset>
+					<cutdirsmapper dirs="1"/>
+				</unzip>
+			</then>
+			<else>
+				<antcall target="prepare-common">
+					<param name="custom.properties" value="${custom.properties}" />
+				</antcall>
+			</else>
+		</if>
+
+		<echo file="app.server.${user.name}.properties">
+app.server.type=tomcat
+app.server.tomcat.dir=${app.server.tomcat.parent.dir}/tomcat-${app.server.tomcat.version}</echo>
+
+		<antcall target="prepare-selenium-server" inheritAll="false">
+			<param name="skip.clean-server-deploy-dir" value="true" />
+		</antcall>
+	</target>
+
+	<target name="run-selenium-tomcat">
+		<antcall target="run-selenium-server" inheritAll="false">
+			<param name="simple.server.start.executable" value="catalina${file.suffix.bat}" />
+			<param name="simple.server.start.executable.arg.line" value="run" />
+			<param name="simple.server.stop.executable" value="shutdown${file.suffix.bat}" />
+			<param name="skip.clean-server-deploy-dir" value="true" />
+			<param name="test.class" value="${test.name}" />
+		</antcall>
+	</target>
+
+	<target name="run-db-sharding-tomcat-test">
+		<if>
+			<or>
+				<not>
+					<isset property="portal.url" />
+				</not>
+				<equals arg1="${portal.url}" arg2="$${portal.url}" />
+			</or>
+			<then>
+				<var name="portal.url" unset="true" />
+				<property name="portal.url" value="http://localhost:8080" />
+			</then>
+		</if>
+
+		<if>
+			<or>
+				<not>
+					<isset property="test.browser" />
+				</not>
+				<equals arg1="${test.browser}" arg2="$${test.browser}" />
+			</or>
+			<then>
+				<var name="test.browser" unset="true" />
+				<property name="test.browser" value="chrome" />
+			</then>
+		</if>
+
+		<ant antfile="build-test-db-sharding-ext.xml" target="rebuild-db-sharding" />
+
+		<antcall target="run-selenium-tomcat" inheritAll="false">
+			<param name="portal.url" value="${portal.url}" />
+			<param name="skip.rebuild-database" value="true" />
+			<param name="test.browser" value="${test.browser}" />
+			<param name="test.name" value="${test.name}" />
+		</antcall>
+	</target>
+
+	<target name="run-db-upgrade-tomcat-test">
+		<if>
+			<or>
+				<not>
+					<isset property="portal.url" />
+				</not>
+				<equals arg1="${portal.url}" arg2="$${portal.url}" />
+			</or>
+			<then>
+				<var name="portal.url" unset="true" />
+				<property name="portal.url" value="http://localhost:8080" />
+			</then>
+		</if>
+
+		<if>
+			<or>
+				<not>
+					<isset property="test.browser" />
+				</not>
+				<equals arg1="${test.browser}" arg2="$${test.browser}" />
+			</or>
+			<then>
+				<var name="test.browser" unset="true" />
+				<property name="test.browser" value="chrome" />
+			</then>
+		</if>
+
+		<!-- Start the versioned Liferay portal -->
+		<antcall target="prepare-selenium-tomcat" inheritAll="false">
+			<param name="app.server.tomcat.version" value="${upgrade.from-tomcat.version}" />
+			<param name="db.type" value="${db.type}" />
+			<param name="custom.properties" value="${upgrade.from-custom.properties}" />
+			<param name="portal.version" value="${upgrade.from-portal.version}" />
+			<param name="portal.url" value="${portal.url}" />
+			<param name="prepare.portal.from.bundle" value="true" />
+			<param name="sql.version" value="${upgrade.from-sql.version}" />
+			<param name="zipped.bundle.file.name" value="${upgrade.from-zipped.bundle.name}" />
+		</antcall>
+		<antcall target="run-selenium-tomcat" inheritAll="false">
+			<param name="portal.url" value="${portal.url}" />
+			<param name="skip.rebuild-database" value="true" />
+			<param name="test.browser" value="${test.browser}" />
+			<param name="test.name" value="${upgrade.from-test.name}" />
+		</antcall>
+
+		<!-- Start the new Liferay portal -->
+		<antcall target="prepare-selenium-tomcat" inheritAll="false">
+			<param name="custom.properties" value="${upgrade.to-custom.properties}" />
+			<param name="db.type" value="${db.type}" />
+			<param name="prepare.portal.from.bundle" value="true" />
+			<param name="portal.url" value="${portal.url}" />
+			<param name="skip.delete-liferay-home" value="true" />
+			<param name="skip.prepare.test-cases" value="true" />
+			<param name="skip.rebuild-database" value="true" />
+		</antcall>
+		<antcall target="run-selenium-tomcat" inheritAll="false">
+			<param name="portal.url" value="${portal.url}" />
+			<param name="skip.rebuild-database" value="true" />
+			<param name="test.browser" value="${test.browser}" />
+			<param name="test.name" value="${upgrade.to-test.name}" />
+		</antcall>
+	</target>
+
+	<target name="run-tomcat-test">
+		<if>
+			<or>
+				<not>
+					<isset property="portal.url" />
+				</not>
+				<equals arg1="${portal.url}" arg2="$${portal.url}" />
+			</or>
+			<then>
+				<var name="portal.url" unset="true" />
+				<property name="portal.url" value="http://localhost:8080" />
+			</then>
+		</if>
+
+		<if>
+			<or>
+				<not>
+					<isset property="test.browser" />
+				</not>
+				<equals arg1="${test.browser}" arg2="$${test.browser}" />
+			</or>
+			<then>
+				<var name="test.browser" unset="true" />
+				<property name="test.browser" value="chrome" />
+			</then>
+		</if>
+
+		<antcall target="run-selenium-tomcat" inheritAll="false">
+			<param name="portal.url" value="${portal.url}" />
+			<param name="test.browser" value="${test.browser}" />
+			<param name="test.name" value="${test1.name}" />
+		</antcall>
+
+		<if>
+			<isset property="test2.name" />
+			<then>
+				<antcall target="run-selenium-tomcat" inheritAll="false">
+					<param name="portal.url" value="${portal.url}" />
+					<param name="skip.delete-selenium-output" value="true" />
+					<param name="test.browser" value="${test.browser}" />
+					<param name="test.name" value="${test2.name}" />
+				</antcall>
+			</then>
+		</if>
+	</target>
+
+</project>

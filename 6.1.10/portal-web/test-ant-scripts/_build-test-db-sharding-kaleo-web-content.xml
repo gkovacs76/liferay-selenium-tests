@@ -3,6 +3,8 @@
 <project name="portal-test-db-sharding-kaleo-web-content" basedir="../../." default="test-tomcat-mysql-firefox" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="../../build-test-ext.xml" />
 
+	<property name="testplan.name" value="KaleoWebContentTestSuite on shared database" />
+
 	<target name="test-tomcat-mysql-firefox">
 		<antcall target="test-tomcat-mysql" />
 	</target>
@@ -37,5 +39,7 @@
 		<ant antfile="build-test-tomcat-ext.xml" target="run-db-sharding-tomcat-test" inheritAll="false">
 			<property name="test.name" value="KaleoWebContentTestSuite" />
 		</ant>
+
+		<antcall target="send-test-results" />
 	</target>
 </project>

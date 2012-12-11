@@ -3,6 +3,8 @@
 <project name="portal-test-control-panel" basedir="../../." default="test-tomcat-mysql-firefox" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="../../build-test-ext.xml" />
 
+	<property name="testplan.name" value="ControlPanelTestSuite" />
+
 	<target name="test-tomcat-mysql-firefox">
 		<antcall target="test-tomcat-mysql" />
 	</target>
